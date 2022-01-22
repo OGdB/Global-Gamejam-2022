@@ -2,23 +2,23 @@ using UnityEngine;
 
 public class SideManager : MonoBehaviour
 {
-    public StateEnum economyState = new StateEnum();
-    public StateEnum defensesState = new StateEnum();
-    public StateEnum technologyState = new StateEnum();
+    private StateEnum defensesState = new StateEnum();
+    private StateEnum technologyState = new StateEnum(0);
 
     [Header("Text")]
-    [SerializeField] private TMPro.TextMeshProUGUI economyText;
     [SerializeField] private TMPro.TextMeshProUGUI defenseText;
     [SerializeField] private TMPro.TextMeshProUGUI techText;
 
     public void Awake()
     {
-        UpdateState();
+        UpdateStates();
     }
 
-    private void UpdateState()
+    /// <summary>
+    /// Updates the states visually
+    /// </summary>
+    private void UpdateStates()
     {
-        economyText.SetText(economyState.GetStateString());
         defenseText.SetText(defensesState.GetStateString());
         techText.SetText(technologyState.GetTechnologyString());
     }
