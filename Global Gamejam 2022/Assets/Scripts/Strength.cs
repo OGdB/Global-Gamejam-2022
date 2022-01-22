@@ -5,11 +5,12 @@ using UnityEngine;
 public class Strength : MonoBehaviour
 {
     //Amount of damage the thing is able todo
-    private int Power = 1;
+    public int Power = 1;
     
 
 
     public void ChangePowerLevel(int amount)
+
     {
         if (Power + amount <= 0)
         {
@@ -21,7 +22,9 @@ public class Strength : MonoBehaviour
         }
     }
     //pass in target
+
     public void DealDamage()
+
     {
         //call targets DamageFunction
         
