@@ -4,6 +4,14 @@ public class SideManager : MonoBehaviour
 {
     private StateEnum defensesState = new StateEnum();
     private StateEnum technologyState = new StateEnum(0);
+    public void ChangeDefensesState(int change)
+    {
+        defensesState.currentState += change;
+    }
+    public void ChangeTechnologyState(int change)
+    {
+        technologyState.currentState += change;
+    }
 
     [Header("Text")]
     [SerializeField] private TMPro.TextMeshProUGUI defenseText;
