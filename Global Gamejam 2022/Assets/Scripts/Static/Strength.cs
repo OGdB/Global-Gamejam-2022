@@ -19,7 +19,7 @@ public class Strength : MonoBehaviour
 
     void ChangePowerLevel(int amount)
     {
-        if (Power += amount <= 0)
+        if (Power + amount <= 0)
         {
             Power = 1;
         }
