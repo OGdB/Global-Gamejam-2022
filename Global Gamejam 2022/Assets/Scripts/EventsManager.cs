@@ -28,8 +28,6 @@ public class EventsManager : MonoBehaviour
                 RandomEvent(lightSideManager);
             else
                 RandomEvent(darkSideManager);
-
-            yield return new WaitForFixedUpdate();
         }
     }
 
