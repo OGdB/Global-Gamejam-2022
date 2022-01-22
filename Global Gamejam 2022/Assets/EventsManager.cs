@@ -10,7 +10,7 @@ public class EventsManager : MonoBehaviour
     private SideManager lightSideManager;
     [SerializeField] 
     private SideManager darkSideManager;
-    [Range(0f, 60f)]
+    [Range(0, 60)]
     public int eventInterval = 45;
 
     private void Start() => StartCoroutine(EventsLoop());
@@ -43,12 +43,12 @@ public class EventsManager : MonoBehaviour
 
         void GoodEvent()
         {
-            print("Good event for " + side.name + "!");
+            print($"Good event for {side.name}!");
         }
 
         void BadEvent()
         {
-            print("Bad event for " + side.name + "!");
+            print($"Bad event for {side.name}!");
         }
     }
 }
