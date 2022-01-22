@@ -1,9 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Strength : MonoBehaviour
 {
+    //Amount of damage the thing is able todo
     public int Power = 1;
-    void ChangePowerLevel(int amount)
+    
+
+
+    public void ChangePowerLevel(int amount)
+
     {
         if (Power + amount <= 0)
         {
@@ -15,7 +22,9 @@ public class Strength : MonoBehaviour
         }
     }
     //pass in target
-    void DealDamage()
+
+    public void DealDamage()
+
     {
         //call targets DamageFunction
         
