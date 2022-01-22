@@ -745,7 +745,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 437711049}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.5, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1841738859}
@@ -945,12 +945,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 815132177}
-  soldierTemplates:
-  - {fileID: 11400000, guid: aa4579aac903a4646b0fad1579ca4714, type: 2}
-  - {fileID: 11400000, guid: dcce12f6b6802bc47b7c070997a07eca, type: 2}
-  - {fileID: 11400000, guid: 8cee6477b261fa4498f15dfe5713409c, type: 2}
+  soldierPrefabs:
+  - {fileID: 5894963948184401589, guid: 4f44d082de5abe44c99c77ed27b8fe46, type: 3}
+  - {fileID: 3607340508260050382, guid: 2551c183219702c489f21430f7d26891, type: 3}
+  - {fileID: 1798623483445948310, guid: 78024bcaea248ee419dc8a4f377128e1, type: 3}
   defenseText: {fileID: 1160841456}
   techText: {fileID: 1373244561}
+  testBool: 0
 --- !u!4 &635377167
 Transform:
   m_ObjectHideFlags: 0
@@ -2019,7 +2020,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1718709478}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.5, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1002995227}
@@ -2188,12 +2189,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 447205009}
-  soldierTemplates:
-  - {fileID: 11400000, guid: 6c9a55c52289b1f4894b5accc4591087, type: 2}
-  - {fileID: 11400000, guid: 0fb86d42732fe21428fd810955bbe3b5, type: 2}
-  - {fileID: 11400000, guid: ffd3f0694bc20e1448c004e497303d3e, type: 2}
+  soldierPrefabs:
+  - {fileID: 5894963948184401589, guid: 7a13c53a00cd77943823ec4bf9b26d71, type: 3}
+  - {fileID: 3607340508260050382, guid: f78768689faf959479d9a2d50d53cafd, type: 3}
+  - {fileID: 1798623483445948310, guid: dff08fae8f0ded44890071320d18726b, type: 3}
   defenseText: {fileID: 461142349}
   techText: {fileID: 135492715}
+  testBool: 0
 --- !u!4 &1875982448
 Transform:
   m_ObjectHideFlags: 0

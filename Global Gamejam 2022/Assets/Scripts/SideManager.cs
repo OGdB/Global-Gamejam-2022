@@ -6,8 +6,7 @@ public class SideManager : MonoBehaviour
     private StateEnum technologyState = new StateEnum(0);
     [SerializeField]
     private Transform spawnPoint;
-    [SerializeField] private SoldierTemplate[] soldierTemplates;
-    private int currentSoldier = 0;
+    [SerializeField] private GameObject[] soldierPrefabs;
     public void ChangeDefensesState(int change)
     {
         if (change <= -1 && defensesState.currentState == 0)
@@ -64,7 +63,7 @@ public class SideManager : MonoBehaviour
     /// </summary>
     public void SpawnTroop()
     {
-        Instantiate(soldierTemplates[currentSoldier], position: spawnPoint.position, Quaternion.identity);
+        Instantiate(soldierPrefabs[(int)technologyState.currentState], position: spawnPoint.position, Quaternion.identity);
     }
 
     public bool testBool = false;
