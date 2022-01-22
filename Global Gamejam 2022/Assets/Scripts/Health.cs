@@ -3,8 +3,8 @@ using UnityEngine;
 // Made it a monobehaviour so that you can Destroy whatever destroys it.
 public class Health : MonoBehaviour
 {
-    private int maxHealth = 100;
-    private int currentHealth = 100;
+    public int maxHealth = 20;
+    private int currentHealth;
 
     private void Awake()
     {

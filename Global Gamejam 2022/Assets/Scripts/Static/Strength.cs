@@ -1,22 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Strength : MonoBehaviour
 {
-    private int Power = 1;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    public int Power = 1;
     void ChangePowerLevel(int amount)
     {
         if (Power + amount <= 0)

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff99fa9c70552324c81b30268ffd7d86, type: 3}
+  m_Name: Soldier 1
+  m_EditorClassIdentifier: 
+  soldierModel: {fileID: 5894963948184401589, guid: 587a390512800ac41b9cb4c0259397e6, type: 3}
+  soldierDamage: 1
+  soldierHealth: 10
