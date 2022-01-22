@@ -19,7 +19,11 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void ChangeMaxHealth(int changeAmount) => maxHealth += changeAmount;
+    public void ChangeMaxHealth(int changeAmount)
+    {
+        if (maxHealth + changeAmount >= 1)
+            maxHealth += changeAmount;
+    }
 
     private void Die()
     {
