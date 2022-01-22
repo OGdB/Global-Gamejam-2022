@@ -10,7 +10,7 @@ public class EventsManager : MonoBehaviour
     private SideManager lightSideManager;
     [SerializeField] 
     private SideManager darkSideManager;
-    [Range(0, 60)]
+    [Range(1, 60)]
     public int eventInterval = 45;
 
     private void Start() => StartCoroutine(EventsLoop());
