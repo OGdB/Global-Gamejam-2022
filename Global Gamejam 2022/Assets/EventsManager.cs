@@ -43,11 +43,13 @@ public class EventsManager : MonoBehaviour
 
         void GoodEvent()
         {
+            side.ChangeRandomState(1);
             print($"Good event for {side.name}!");
         }
 
         void BadEvent()
         {
+            side.ChangeRandomState(-1);
             print($"Bad event for {side.name}!");
         }
     }

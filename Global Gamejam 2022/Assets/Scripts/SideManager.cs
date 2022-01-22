@@ -6,11 +6,35 @@ public class SideManager : MonoBehaviour
     private StateEnum technologyState = new StateEnum(0);
     public void ChangeDefensesState(int change)
     {
+        if (change <= -1 && defensesState.currentState == 0)
+            return;
+
         defensesState.currentState += change;
+
+        UpdateStates();
     }
     public void ChangeTechnologyState(int change)
     {
+        if (change <= -1 && technologyState.currentState == 0)
+            return;
+
         technologyState.currentState += change;
+
+        UpdateStates();
+    }
+    public void ChangeRandomState(int change)
+    {
+        float random = Random.Range(-1f, 1f);
+        if (random < 0)
+        {
+            print("Improve Defense State!");
+            ChangeDefensesState(change);
+        }
+        else
+        {
+            print("Improve Technology State!");
+            ChangeTechnologyState(change);
+        }
     }
 
     [Header("Text")]
