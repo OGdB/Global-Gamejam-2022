@@ -4,20 +4,13 @@ using UnityEngine;
 
 public class Strength : MonoBehaviour
 {
-    private int Power = 1;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //Amount of damage the thing is able todo
+    public int Power = 1;
+    
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    void ChangePowerLevel(int amount)
+    public void ChangePowerLevel(int amount)
+
     {
         if (Power + amount <= 0)
         {
@@ -29,7 +22,9 @@ public class Strength : MonoBehaviour
         }
     }
     //pass in target
-    void DealDamage()
+
+    public void DealDamage()
+
     {
         //call targets DamageFunction
         
