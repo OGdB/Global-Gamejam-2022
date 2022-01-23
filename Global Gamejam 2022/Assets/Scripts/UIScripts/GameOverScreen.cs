@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class GameOverScreen : MonoBehaviour
 {
-    [SerializeField] private TMPro.TextMeshProUGUI topText;
-    [SerializeField] private TMPro.TextMeshProUGUI subText;
+    [SerializeField] private TMPro.TextMeshProUGUI BigText;
+    [SerializeField] private TMPro.TextMeshProUGUI WinnerText;
+    [SerializeField] private TMPro.TextMeshProUGUI ScoreText;
 
     private void OnEnable()
     {
-        topText.SetText($"{Blackboard.winner} has conquered {Blackboard.loser}");
-        subText.SetText("Balance was lost");
+        BigText.SetText("The War Has Ended!");
+        WinnerText.SetText($"{Blackboard.winner} has triumphed over {Blackboard.loser}");
+        ScoreText.SetText($"You kept the war going for {Blackboard.TimeLasted} years");
     }
 
     public void OnRestart()
