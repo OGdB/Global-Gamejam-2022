@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 1146498445903302976}
   - component: {fileID: 7977150425280153703}
   - component: {fileID: -6822909492176965244}
-  - component: {fileID: 540006916727854958}
   m_Layer: 0
   m_Name: LightCube
   m_TagString: Light
@@ -163,16 +162,3 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!65 &540006916727854958
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1335765064934066127}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 3, z: 3}
-  m_Center: {x: 0, y: 0, z: 0}

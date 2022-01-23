@@ -40,12 +40,10 @@ public class SideManager : MonoBehaviour
         float random = Random.Range(-1f, 1f);
         if (random < 0)
         {
-            print("Improve Defense State!");
             ChangeDefensesState(change);
         }
         else
         {
-            print("Improve Technology State!");
             ChangeTechnologyState(change);
         }
     }
