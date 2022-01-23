@@ -123,21 +123,15 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 37704d0979c0af14197a79fb8e314eb6, type: 2}
---- !u!1 &11545477 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2748796447872788254, guid: 5647c597e3a5e2840be51a00011f9189, type: 3}
+--- !u!114 &284100850 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6630358274750059779, guid: 5647c597e3a5e2840be51a00011f9189, type: 3}
   m_PrefabInstance: {fileID: 741824687253048186}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &11545478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 11545477}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf68d97065472a14bb19456e4dbf5b13, type: 3}
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &294635442
@@ -290,6 +284,17 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1297389115 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 741824687474311129, guid: 5647c597e3a5e2840be51a00011f9189, type: 3}
+  m_PrefabInstance: {fileID: 741824687253048186}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1705d6aed49b4b643864cef5e973f63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1525467416
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,6 +361,17 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!114 &1953483070 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 741824686902757865, guid: 5647c597e3a5e2840be51a00011f9189, type: 3}
+  m_PrefabInstance: {fileID: 741824687253048186}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1705d6aed49b4b643864cef5e973f63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1966137877
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,6 +495,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11545478, guid: 5647c597e3a5e2840be51a00011f9189, type: 3}
+      propertyPath: slider
+      value: 
+      objectReference: {fileID: 284100850}
+    - target: {fileID: 11545478, guid: 5647c597e3a5e2840be51a00011f9189, type: 3}
+      propertyPath: darkSideManager
+      value: 
+      objectReference: {fileID: 1297389115}
+    - target: {fileID: 11545478, guid: 5647c597e3a5e2840be51a00011f9189, type: 3}
+      propertyPath: lightSideManager
+      value: 
+      objectReference: {fileID: 1953483070}
     - target: {fileID: 4725356455544243322, guid: 5647c597e3a5e2840be51a00011f9189, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -550,6 +578,14 @@ PrefabInstance:
     - target: {fileID: 4725356457030076808, guid: 5647c597e3a5e2840be51a00011f9189, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324066811231475377, guid: 5647c597e3a5e2840be51a00011f9189, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6630358274750059779, guid: 5647c597e3a5e2840be51a00011f9189, type: 3}
+      propertyPath: m_Value
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6794343895490672462, guid: 5647c597e3a5e2840be51a00011f9189, type: 3}
       propertyPath: m_Name
@@ -619,6 +655,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5526597664027789121, guid: 5647c597e3a5e2840be51a00011f9189, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5647c597e3a5e2840be51a00011f9189, type: 3}
