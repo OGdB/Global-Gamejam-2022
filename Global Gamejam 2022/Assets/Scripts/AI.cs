@@ -8,6 +8,7 @@ public class AI : MonoBehaviour
     private Strength strength;
     private NavMeshAgent agent;
     public Vector3 targetBase;
+    public float enemyDetectionRange = 8f;
     public string enemyTag;
     private Health currentEnemy;
     private bool attackCooldown = false;
@@ -35,7 +36,7 @@ public class AI : MonoBehaviour
     {
         if (!currentEnemy) // Look for enemy if not fighting one
         {
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, 4f);
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, enemyDetectionRange);
             Collider closestEnemy = null;
             float closestDistance = Mathf.Infinity;
 
