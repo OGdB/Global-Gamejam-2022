@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class InteractionsManager : MonoBehaviour
 {
+    [Header("Buttons")]
     public Button DarkDefenseBuffButton;
     public Button LightDefenseBuffButton;
     public Button DarkDefenseDebuffButton;
@@ -14,6 +15,7 @@ public class InteractionsManager : MonoBehaviour
     public Button LightTechnologyBuffButton;
     public Button DarkTechnologyDebuffButton;
     public Button LightTechnologyDebuffButton;
+    [Header("Text")]
     [SerializeField] private TMPro.TextMeshProUGUI DarkDefenseBuffLabel;
     [SerializeField] private TMPro.TextMeshProUGUI LightDefenseBuffLabel;
     [SerializeField] private TMPro.TextMeshProUGUI DarkDefenseDebuffLabel;
@@ -22,7 +24,7 @@ public class InteractionsManager : MonoBehaviour
     [SerializeField] private TMPro.TextMeshProUGUI LightTechnologyBuffLabel;
     [SerializeField] private TMPro.TextMeshProUGUI DarkTechnologyDebuffLabel;
     [SerializeField] private TMPro.TextMeshProUGUI LightTechnologyDebuffLabel;
-
+    [Header("Chaos")]
     public Slider ChaosPointsBar;
     private int maxChaosPoints = 100;
     private int currentChaosPoint = 0;
