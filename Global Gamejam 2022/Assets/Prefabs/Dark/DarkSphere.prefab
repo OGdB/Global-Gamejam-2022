@@ -112,8 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetBase: {x: 0, y: 0, z: 0}
-  enemyTag: 
-  isFighting: 0
+  enemyTag: Light
 --- !u!114 &5884205823529544762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7aeb558be5300644b2c194beca4a245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 30
 --- !u!114 &920134409463840834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573a78df75b9d574f8f4b350cc49b742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Power: 1
+  Power: 1.35
 --- !u!195 &6926310806600244277
 NavMeshAgent:
   m_ObjectHideFlags: 0

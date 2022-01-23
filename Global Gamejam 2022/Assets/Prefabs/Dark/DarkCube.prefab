@@ -112,8 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetBase: {x: 0, y: 0, z: 0}
-  enemyTag: 
-  isFighting: 0
+  enemyTag: Light
 --- !u!114 &1146498445903302976
 MonoBehaviour:
   m_ObjectHideFlags: 0

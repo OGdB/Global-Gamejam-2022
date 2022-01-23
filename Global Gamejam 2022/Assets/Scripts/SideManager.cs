@@ -29,7 +29,7 @@ public class SideManager : MonoBehaviour
     }
     public void ChangeTechnologyState(int change)
     {
-        if ((change <= -1 && technologyState.currentState == 0) || (change <= 1 && technologyState.currentState == StateEnum.CurrentState.bad))
+        if ((change <= -1 && technologyState.currentState == 0) || (change >= 1 && technologyState.currentState == StateEnum.CurrentState.bad))
             return;
 
         technologyState.currentState += change;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Strength : MonoBehaviour
 {
     //Amount of damage the thing is able todo
-    public int Power = 1;
+    public float Power = 1;
     
 
 
