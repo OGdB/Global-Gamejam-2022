@@ -47,14 +47,18 @@ public class EventsManager : MonoBehaviour
 
         void GoodEvent(string sideName)
         {
-            side.ChangeRandomState(1);
-            RandomGoodEventMessage(sideName);
+            bool succes = side.ChangeRandomState(1);
+
+            if (succes)
+                RandomGoodEventMessage(sideName);
         }
 
         void BadEvent(string sideName)
         {
-            side.ChangeRandomState(-1);
-            RandomBadEventMessage(sideName);
+            bool success = side.ChangeRandomState(-1);
+
+            if (success)
+                RandomBadEventMessage(sideName);
         }
     }
     private void RandomBadEventMessage(string sidename)
@@ -67,9 +71,9 @@ public class EventsManager : MonoBehaviour
     }
     private void RandomGoodEventMessage(string sidename)
     {
-        int randomGoodInt = Random.Range(0, randomBadMessages.Length - 1);
+        int randomGoodInt = Random.Range(0, randomGoodMessages.Length - 1);
 
-        string randomGoodString = randomBadMessages[randomGoodInt];
+        string randomGoodString = randomGoodMessages[randomGoodInt];
 
         messageText.SetText($"{sidename}'s {randomGoodString}");
     }

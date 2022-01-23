@@ -21,44 +21,39 @@ public class SideManager : MonoBehaviour
     private void Start()
     {
         spawnCoroutine = StartCoroutine(SpawnTroopLoop());
-
-        for (int i = 0; i < 9; i++)
-        {
-
-        }
-        for (int i = 0; i < 9; i++)
-        {
-
-        }
     }
-    public void ChangeDefensesState(int change)
+    public bool ChangeDefensesState(int change)
     {
-        if (change <= -1 && defensesState.currentState == 0)
-            return;
+        if (change <= -1 && defensesState.currentState == StateEnum.CurrentState.horrible)
+            return false;
 
         defensesState.currentState += change;
 
         UpdateStates();
+        return true;
     }
-    public void ChangeTechnologyState(int change)
+    public bool ChangeTechnologyState(int change)
     {
-        if ((change <= -1 && technologyState.currentState == 0) || (change >= 1 && technologyState.currentState == StateEnum.CurrentState.bad))
-            return;
+        if ((change <= -1 && technologyState.currentState == StateEnum.CurrentState.horrible) || (change >= 1 && technologyState.currentState == StateEnum.CurrentState.bad))
+            return false;
 
         technologyState.currentState += change;
 
         UpdateStates();
+        return true;
     }
-    public void ChangeRandomState(int change)
+    public bool ChangeRandomState(int change)
     {
         float random = Random.Range(-1f, 1f);
         if (random < 0)
         {
-            ChangeDefensesState(change);
+            bool success = ChangeDefensesState(change);
+            return success;
         }
         else
         {
-            ChangeTechnologyState(change);
+            bool success = ChangeTechnologyState(change);
+            return success;
         }
     }
 
@@ -125,11 +120,14 @@ public class SideManager : MonoBehaviour
             {
                 Blackboard.loser = thisTag;
                 print($"{thisTag}'s spawnpoint destroyed!");
-            }
-            else
-            {
-                Blackboard.winner = thisTag;
-                print($"{thisTag}'s Enemy spawnpoint destroyed!");
+                if (thisTag == "Light")
+                {
+                    Blackboard.winner = "Dark";
+                }
+                else if (thisTag == "Dark")
+                {
+                    Blackboard.winner = "Light";
+                }
             }
 
             StopCoroutine(spawnCoroutine);
