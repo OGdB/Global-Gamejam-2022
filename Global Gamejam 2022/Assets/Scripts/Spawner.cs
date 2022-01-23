@@ -75,7 +75,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         if (gameObject.tag == "Light")
         {
@@ -86,7 +86,7 @@ public class Spawner : MonoBehaviour
             SideManager.darkSideSpawns.Remove(this);
         }
 
-        if (SideManager.darkSideSpawns.Count == 0)
+        if (SideManager.darkSideSpawns.Count <= 0)
         {
             // Light wins
             Blackboard.winner = "Light";
@@ -98,7 +98,7 @@ public class Spawner : MonoBehaviour
             }
             UnityEngine.SceneManagement.SceneManager.LoadScene("FinalScreen");
         }
-        else if (SideManager.lightSideSpawns.Count == 0)
+        else if (SideManager.lightSideSpawns.Count <= 0)
         {
             // Dark wins
             Blackboard.winner = "Dark";

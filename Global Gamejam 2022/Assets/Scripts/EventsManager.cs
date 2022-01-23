@@ -46,7 +46,7 @@ public class EventsManager : MonoBehaviour
     private void RandomEvent(SideManager side)
     {
         float random = Random.Range(-1f, 1f);
-        string sideName = side.name;
+        string sideName = side.gameObject.tag;
         if (random < 0)
             GoodEvent(sideName);
         else
