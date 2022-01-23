@@ -36,7 +36,7 @@ public class SideManager : MonoBehaviour
 
     public bool ChangeDefensesState(int change)
     {
-        if (change <= -1 && defensesState.currentState == StateEnum.CurrentState.level1)
+        if (change <= -1 && defensesState.currentState == StateEnum.CurrentState.level1 || (change >= 1 && defensesState.currentState == StateEnum.CurrentState.level2))
             return false;
 
         defensesState.currentState += change;
