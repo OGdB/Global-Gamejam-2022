@@ -53,19 +53,11 @@ public class StateEnum
         switch (currentState)
         {
             case CurrentState.horrible:
-                return "Prehistoric";
+                return "Stone Age";
             case CurrentState.very_bad:
-                return "Medieval";
+                return "Bronze Age";
             case CurrentState.bad:
-                return "Early Modern";
-            case CurrentState.average:
-                return "Modern";
-            case CurrentState.good:
-                return "Futuristic";
-            case CurrentState.very_good:
-                return "Sci-fi";
-            case CurrentState.excellent:
-                return "Ascended";
+                return "Iron Age";
             default:
                 return null;
         }

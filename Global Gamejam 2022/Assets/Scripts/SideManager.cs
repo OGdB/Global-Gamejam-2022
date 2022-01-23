@@ -4,6 +4,9 @@ public class SideManager : MonoBehaviour
 {
     private StateEnum defensesState = new StateEnum();
     private StateEnum technologyState = new StateEnum(0);
+    [SerializeField]
+    private Transform spawnPoint;
+    [SerializeField] private GameObject[] soldierPrefabs;
     public void ChangeDefensesState(int change)
     {
         if (change <= -1 && defensesState.currentState == 0)
@@ -15,7 +18,7 @@ public class SideManager : MonoBehaviour
     }
     public void ChangeTechnologyState(int change)
     {
-        if (change <= -1 && technologyState.currentState == 0)
+        if ((change <= -1 && technologyState.currentState == 0) || (change <= 1 && technologyState.currentState == StateEnum.CurrentState.bad))
             return;
 
         technologyState.currentState += change;
@@ -53,5 +56,23 @@ public class SideManager : MonoBehaviour
     {
         defenseText.SetText(defensesState.GetStateString());
         techText.SetText(technologyState.GetTechnologyString());
+    }
+
+    /// <summary>
+    /// Spawn a
+    /// </summary>
+    public void SpawnTroop()
+    {
+        Instantiate(soldierPrefabs[(int)technologyState.currentState], position: spawnPoint.position, Quaternion.identity);
+    }
+
+    public bool testBool = false;
+    public void Update()
+    {
+        if (testBool)
+        {
+            testBool = false;
+            SpawnTroop();
+        }
     }
 }
