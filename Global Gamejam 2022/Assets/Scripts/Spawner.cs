@@ -6,19 +6,29 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField]
     private float spawnInterval = 10f;
-    private GameObject currentTroop;
     [SerializeField]
     private SideManager thisSideManager;
-    [SerializeField] 
-    private Transform spawnPoint;
     [SerializeField]
-    private Transform[] enemySpawns;
+    private Transform spawnPoint;
+    public List<Spawner> enemySpawns = new List<Spawner>();
+
     private Transform thisLaneTarget;
 
     private Coroutine spawnCoroutine;
 
-    private void Awake()
+    private void Start()
     {
+        if (gameObject.tag == "Light")
+        {
+            thisSideManager = GameObject.Find("LightManager").GetComponent<SideManager>();
+            enemySpawns = SideManager.darkSideSpawns;
+        }
+        else if (gameObject.tag == "Dark")
+        {
+            thisSideManager = GameObject.Find("DarkManager").GetComponent<SideManager>();
+            enemySpawns = SideManager.lightSideSpawns;
+        }
+
         thisLaneTarget = GetClosestEnemySpawn();
         spawnCoroutine = StartCoroutine(SpawnTroopLoop());
     }
@@ -28,13 +38,14 @@ public class Spawner : MonoBehaviour
         // Get closest enemy spawn to send troops towards
         Transform closestEnemySpawn = null;
         float closestDistance = Mathf.Infinity;
-        foreach (var spawn in enemySpawns)
+        for (int i = 0; i < enemySpawns.Count; i++)
         {
-            float distance = Vector3.Distance(spawn.position, spawn.position);
+            Spawner spawn = enemySpawns[i];
+            float distance = Vector3.Distance(spawn.transform.position, spawn.transform.position);
             if (distance < closestDistance)
             {
                 closestDistance = distance;
-                closestEnemySpawn = spawn;
+                closestEnemySpawn = spawn.transform;
             }
         }
         return closestEnemySpawn;
@@ -44,7 +55,7 @@ public class Spawner : MonoBehaviour
     {
         if (spawnPoint.gameObject.activeInHierarchy && thisLaneTarget.gameObject.activeInHierarchy)
         {
-            GameObject newTroop = Instantiate(currentTroop, position: spawnPoint.position, Quaternion.identity);
+            GameObject newTroop = Instantiate(thisSideManager.GetCurrentTroop(), position: spawnPoint.position, Quaternion.identity);
             // Find enemy base
             if (gameObject.tag == "Dark")
             {
@@ -55,28 +66,19 @@ public class Spawner : MonoBehaviour
         {
             if (!spawnPoint.gameObject.activeInHierarchy) // if this spawnpoint was destroyed
             {
-                Blackboard.loser = thisTag;
-                if (thisTag == "Light")
+                Blackboard.loser = gameObject.tag;
+                if (gameObject.tag == "Light")
                 {
                     Blackboard.winner = "Dark";
                 }
-                else if (thisTag == "Dark")
+                else if (gameObject.tag == "Dark")
                 {
                     Blackboard.winner = "Light";
                 }
             }
 
             StopCoroutine(spawnCoroutine);
-
-            // GAME OVER SCREEN
-            loseScreen.SetActive(true);
-
         }
-    }
-
-    public void OnGameOver()
-    {
-        StopCoroutine(spawnCoroutine);
     }
 
     private IEnumerator SpawnTroopLoop()
@@ -85,6 +87,49 @@ public class Spawner : MonoBehaviour
         {
             yield return new WaitForSeconds(spawnInterval);
             SpawnTroop();
-
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (gameObject.tag == "Light")
+        {
+            SideManager.lightSideSpawns.Remove(this);
+        }
+        else if (gameObject.tag == "Dark")
+        {
+            SideManager.darkSideSpawns.Remove(this);
+        }
+
+        if (SideManager.darkSideSpawns.Count == 0)
+        {
+            // Light wins
+            Blackboard.winner = "Light";
+            Spawner[] allSpawners = FindObjectsOfType<Spawner>();
+            foreach (Spawner spawner in allSpawners)
+            {
+                spawner.StopAllCoroutines();
+            }
+            UnityEngine.SceneManagement.SceneManager.LoadScene("FinalScreen");
+        }
+        else if (SideManager.lightSideSpawns.Count == 0)
+        {
+            // Dark wins
+            Blackboard.winner = "Dark";
+            Spawner[] allSpawners = FindObjectsOfType<Spawner>();
+            foreach (Spawner spawner in allSpawners)
+            {
+                spawner.StopAllCoroutines();
+            }
+            UnityEngine.SceneManagement.SceneManager.LoadScene("FinalScreen");
+        }
+    }
+    public bool testbool = false;
+    private void Update()
+    {
+        if (testbool)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

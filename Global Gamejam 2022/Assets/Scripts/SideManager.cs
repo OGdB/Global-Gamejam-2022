@@ -1,18 +1,32 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class SideManager : MonoBehaviour
 {
     public StateEnum defensesState = new StateEnum();
     public StateEnum technologyState = new StateEnum(0);
+    public static List<Spawner> lightSideSpawns = new List<Spawner>();
+    public static List<Spawner> darkSideSpawns = new List<Spawner>();
 
     public GameObject[] soldierPrefabs; // Soldier prefabs in the order of worst to best
 
-    public Transform lightBase;
-    public Transform darkBase;
-
     public void Awake()
     {
-        SetCurrentTroop();
+        Spawner[] _spawns = FindObjectsOfType<Spawner>();
+
+        for (int i = 0; i < _spawns.Length; i++)
+        {
+            Spawner spawn = _spawns[i];
+            if (spawn.tag == "Light" && gameObject.tag == "Light")
+            {
+                lightSideSpawns.Add(spawn);
+            }
+            else if (spawn.tag == "Dark" && gameObject.tag == "Dark")
+            {
+                darkSideSpawns.Add(spawn);
+            }
+        }
+
         UpdateStates();
     }
 
@@ -33,22 +47,14 @@ public class SideManager : MonoBehaviour
             return false;
 
         technologyState.currentState += change;
-        SetCurrentTroop();
 
         UpdateStates();
         return true;
     }
 
-    private void SetCurrentTroop()
+    public GameObject GetCurrentTroop()
     {
-        if (gameObject.tag == "Dark")
-        {
-            Blackboard.currentDarkTroop = soldierPrefabs[(int)technologyState.currentState];
-        }
-        else if (gameObject.tag == "Light")
-        {
-            Blackboard.currentLightTroop = soldierPrefabs[(int)technologyState.currentState];
-        }
+        return soldierPrefabs[(int)technologyState.currentState];
     }
 
     public bool ChangeRandomState(int change)
@@ -75,7 +81,6 @@ public class SideManager : MonoBehaviour
     [SerializeField] private Sprite stoneAgeImg;
     [SerializeField] private Sprite BronzeAgeImg;
     [SerializeField] private Sprite IronAgeImg;
-    [SerializeField] private GameObject loseScreen;
     [SerializeField] private Image BalancedefenseImage;
     [SerializeField] private Image BalancetechImage;
     [SerializeField] private Sprite Level1Img;
