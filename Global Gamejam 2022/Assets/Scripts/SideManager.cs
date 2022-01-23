@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class SideManager : MonoBehaviour
 {
-    public StateEnum defensesState = new StateEnum();
+    public StateEnum defensesState = new StateEnum(0);
     public StateEnum technologyState = new StateEnum(0);
     public static List<Spawner> lightSideSpawns = new List<Spawner>();
     public static List<Spawner> darkSideSpawns = new List<Spawner>();
@@ -11,6 +11,7 @@ public class SideManager : MonoBehaviour
     
 
     public GameObject[] soldierPrefabs; // Soldier prefabs in the order of worst to best
+    public GameObject[] towerPrefabs; // Soldier prefabs in the order of worst to best
 
     public void Awake()
     {
@@ -39,6 +40,20 @@ public class SideManager : MonoBehaviour
             return false;
 
         defensesState.currentState += change;
+        // Update all towers to the correct models
+        TowerAI[] towers = FindObjectsOfType<TowerAI>();
+        GameObject newModel = GetCurrentTower();
+        foreach (TowerAI tower in towers)
+        {
+            if (tower.tag == gameObject.tag)
+            {
+                // Completely replace the towers;
+
+                Instantiate(newModel, tower.transform.position, tower.transform.rotation, tower.transform.parent);
+                Destroy(tower.gameObject);
+                amountOfTowersLeft++;
+            }
+        }
 
         UpdateStates();
         return true;
@@ -57,6 +72,10 @@ public class SideManager : MonoBehaviour
     public GameObject GetCurrentTroop()
     {
         return soldierPrefabs[(int)technologyState.currentState];
+    }
+    public GameObject GetCurrentTower()
+    {
+        return towerPrefabs[(int)defensesState.currentState];
     }
 
     public bool ChangeRandomState(int change)
@@ -98,15 +117,15 @@ public class SideManager : MonoBehaviour
         techText.SetText(technologyState.GetTechnologyString());
         switch (defensesState.GetStateString())
         {
-            case "level1":
+            case "Level 1":
                 defenseImage.sprite = Level1Img;
                 BalancedefenseImage.sprite = Level1Img;
                 break;
-            case "level2":
+            case "Level 2":
                 defenseImage.sprite = Level2Img;
                 BalancedefenseImage.sprite = Level2Img;
                 break;
-            case "level3":
+            case "Level 3":
                 defenseImage.sprite = Level3Img;
                 BalancedefenseImage.sprite = Level3Img;
                 break;

@@ -62,23 +62,6 @@ public class Spawner : MonoBehaviour
                 newTroop.GetComponent<AI>().targetBase = thisLaneTarget.position;
             }
         }
-        else
-        {
-            if (!spawnPoint.gameObject.activeInHierarchy) // if this spawnpoint was destroyed
-            {
-                Blackboard.loser = gameObject.tag;
-                if (gameObject.tag == "Light")
-                {
-                    Blackboard.winner = "Dark";
-                }
-                else if (gameObject.tag == "Dark")
-                {
-                    Blackboard.winner = "Light";
-                }
-            }
-
-            StopCoroutine(spawnCoroutine);
-        }
     }
 
     private IEnumerator SpawnTroopLoop()
@@ -122,14 +105,6 @@ public class Spawner : MonoBehaviour
                 spawner.StopAllCoroutines();
             }
             UnityEngine.SceneManagement.SceneManager.LoadScene("FinalScreen");
-        }
-    }
-    public bool testbool = false;
-    private void Update()
-    {
-        if (testbool)
-        {
-            Destroy(gameObject);
         }
     }
 }

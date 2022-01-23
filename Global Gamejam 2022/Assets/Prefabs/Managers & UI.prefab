@@ -165,6 +165,10 @@ MonoBehaviour:
   - {fileID: 1335765064934066127, guid: 97148d739b2485946ac10b6f4960bf2f, type: 3}
   - {fileID: 6339415403353677038, guid: 9a517ae3cd9ebc24c88215273d5acb9f, type: 3}
   - {fileID: 9096933981032908937, guid: edaad1466466cf6448b8d646e31af2f7, type: 3}
+  towerPrefabs:
+  - {fileID: 1474501120821439217, guid: 8ff8e9cceb9a0c84fadeba3c2bf96c2e, type: 3}
+  - {fileID: 6286502335906586604, guid: ed9003cd1abf8cd41b76dbd1b2fa88c4, type: 3}
+  - {fileID: 7459255532939002311, guid: dda84f0d36677af4bb0314f9622c43f9, type: 3}
   defenseText: {fileID: 8870382647255242425}
   techText: {fileID: 8870382647722984913}
   defenseImage: {fileID: 8870382646901028730}
@@ -225,6 +229,10 @@ MonoBehaviour:
   - {fileID: 1335765064934066127, guid: 9b0c1dadfc27df54caf07e6334599ea5, type: 3}
   - {fileID: 6339415403353677038, guid: 59a4b24213caaa24f84b5434f5482289, type: 3}
   - {fileID: 9096933981032908937, guid: a9651c298cefeec49ac569169903220d, type: 3}
+  towerPrefabs:
+  - {fileID: 6058629009372274412, guid: e4dd5ec6be293ef4cbbec97abfe85347, type: 3}
+  - {fileID: 7841901768944144970, guid: 985b21079ba6c4b45a8e96339ca9672f, type: 3}
+  - {fileID: 8119503530562265143, guid: 78bea299a5528644d90a819fec73aaf3, type: 3}
   defenseText: {fileID: 8870382646482306281}
   techText: {fileID: 8870382648455910475}
   defenseImage: {fileID: 8870382646763488227}
@@ -449,6 +457,10 @@ PrefabInstance:
     - target: {fileID: 732355325950411812, guid: b23855a67c171d64fb237d4003815e6c, type: 3}
       propertyPath: m_SortingOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 732355325950411812, guid: b23855a67c171d64fb237d4003815e6c, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2051836730550098717, guid: b23855a67c171d64fb237d4003815e6c, type: 3}
       propertyPath: m_AnchorMax.y
