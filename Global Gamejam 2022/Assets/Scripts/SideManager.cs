@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class SideManager : MonoBehaviour
 {
     public string thisTag;
-    private StateEnum defensesState = new StateEnum();
-    private StateEnum technologyState = new StateEnum(0);
+    public StateEnum defensesState = new StateEnum();
+    public StateEnum technologyState = new StateEnum(0);
     [SerializeField]
     private Transform spawnPoint;
     [SerializeField] private GameObject[] soldierPrefabs; // Soldier prefabs in the order of worst to best
@@ -52,6 +52,12 @@ public class SideManager : MonoBehaviour
     [Header("Text")]
     [SerializeField] private TMPro.TextMeshProUGUI defenseText;
     [SerializeField] private TMPro.TextMeshProUGUI techText;
+    [Header("Images")]
+    [SerializeField] private Image defenseImage;
+    [SerializeField] private Image techImage;
+    [SerializeField] private Sprite stoneAgeImg;
+    [SerializeField] private Sprite BronzeAgeImg;
+    [SerializeField] private Sprite IronAgeImg;
 
     public void Awake()
     {
@@ -65,6 +71,21 @@ public class SideManager : MonoBehaviour
     {
         defenseText.SetText(defensesState.GetStateString());
         techText.SetText(technologyState.GetTechnologyString());
+        switch (technologyState.GetTechnologyString())
+        {
+            case "Stone Age":
+                techImage.sprite = stoneAgeImg;
+                break;
+            case "Bronze Age":
+                techImage.sprite = BronzeAgeImg;
+                break;
+            case "Iron Age":
+                techImage.sprite = IronAgeImg;
+                break;
+            default:
+                break;
+        }
+
     }
 
 

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class InteractionsManager : MonoBehaviour
 {
+    [Header("Buttons")]
     public Button DarkDefenseBuffButton;
     public Button LightDefenseBuffButton;
     public Button DarkDefenseDebuffButton;
@@ -14,6 +15,7 @@ public class InteractionsManager : MonoBehaviour
     public Button LightTechnologyBuffButton;
     public Button DarkTechnologyDebuffButton;
     public Button LightTechnologyDebuffButton;
+    [Header("Text")]
     [SerializeField] private TMPro.TextMeshProUGUI DarkDefenseBuffLabel;
     [SerializeField] private TMPro.TextMeshProUGUI LightDefenseBuffLabel;
     [SerializeField] private TMPro.TextMeshProUGUI DarkDefenseDebuffLabel;
@@ -22,7 +24,7 @@ public class InteractionsManager : MonoBehaviour
     [SerializeField] private TMPro.TextMeshProUGUI LightTechnologyBuffLabel;
     [SerializeField] private TMPro.TextMeshProUGUI DarkTechnologyDebuffLabel;
     [SerializeField] private TMPro.TextMeshProUGUI LightTechnologyDebuffLabel;
-
+    [Header("Chaos")]
     public Slider ChaosPointsBar;
     private int maxChaosPoints = 100;
     private int currentChaosPoint = 0;
@@ -54,7 +56,7 @@ public class InteractionsManager : MonoBehaviour
     // Update is called once per frame
     public void PurchaseDefenseBuff(SideManager side)
     {
-        if (currentChaosPoint >= 25)
+        if (currentChaosPoint >= 25 && side.defensesState.currentState != StateEnum.CurrentState.excellent)
         {
             changeChaosPoints(-25);
             side.ChangeDefensesState(1);
@@ -62,7 +64,7 @@ public class InteractionsManager : MonoBehaviour
     }
     public void PurchaseDefenseDebuff(SideManager side)
     {
-        if (currentChaosPoint >= 25)
+        if (currentChaosPoint >= 25&& side.defensesState.currentState!= 0)
         {
             changeChaosPoints(-25);
             side.ChangeDefensesState(-1);
@@ -70,7 +72,7 @@ public class InteractionsManager : MonoBehaviour
     }
     public void PurchaseTechnologyBuff(SideManager side)
     {
-        if (currentChaosPoint >= 25)
+        if (currentChaosPoint >= 25 && side.technologyState.currentState != StateEnum.CurrentState.bad)
         {
             changeChaosPoints(-25);
             side.ChangeTechnologyState(1);
@@ -78,7 +80,7 @@ public class InteractionsManager : MonoBehaviour
     }
     public void PurchaseTechnologyDebuff(SideManager side)
     {
-        if (currentChaosPoint >= 25)
+        if (currentChaosPoint >= 25 && side.technologyState.currentState != 0)
         {
             changeChaosPoints(-25);
             side.ChangeTechnologyState(-1);
