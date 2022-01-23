@@ -30,6 +30,14 @@ public class TowerAI : MonoBehaviour
     // Updates the target of nearest enemy to the tower
     void UpdateTarget()
     {
+        if(gameObject.tag == "Dark")
+        {
+            enemyTag = "Light";
+        }
+        else
+        {
+            enemyTag = "Dark";
+        }
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
