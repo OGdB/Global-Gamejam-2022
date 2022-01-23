@@ -104,11 +104,11 @@ public class SideManager : MonoBehaviour
                 break;
             case "level2":
                 defenseImage.sprite = Level2Img;
-                BalancedefenseImage.sprite = Level1Img;
+                BalancedefenseImage.sprite = Level2Img;
                 break;
             case "level3":
                 defenseImage.sprite = Level3Img;
-                BalancedefenseImage.sprite = Level1Img;
+                BalancedefenseImage.sprite = Level3Img;
                 break;
             default:
                 break;
@@ -121,11 +121,11 @@ public class SideManager : MonoBehaviour
                 break;
             case "Bronze Age":
                 techImage.sprite = BronzeAgeImg;
-                BalancetechImage.sprite = stoneAgeImg;
+                BalancetechImage.sprite = BronzeAgeImg;
                 break;
             case "Iron Age":
                 techImage.sprite = IronAgeImg;
-                BalancetechImage.sprite = stoneAgeImg;
+                BalancetechImage.sprite = IronAgeImg;
                 break;
             default:
                 break;
