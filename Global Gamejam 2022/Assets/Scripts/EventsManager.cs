@@ -14,6 +14,9 @@ public class EventsManager : MonoBehaviour
     private TMPro.TextMeshProUGUI messageText;
     [Range(1, 60)]
     public int eventInterval = 45;
+    public string[] randomBadMessages;
+    public string[] randomGoodMessages;
+
 
     private void Start() => StartCoroutine(EventsLoop());
 
@@ -36,29 +39,42 @@ public class EventsManager : MonoBehaviour
     private void RandomEvent(SideManager side)
     {
         float random = Random.Range(-1f, 1f);
+        string sideName = side.name;
         if (random < 0)
-            GoodEvent();
+            GoodEvent(sideName);
         else
-            BadEvent();
+            BadEvent(sideName);
 
-        void GoodEvent()
+        void GoodEvent(string sideName)
         {
-            side.ChangeRandomState(1);
-            RandomGoodEventMessage();
+            bool succes = side.ChangeRandomState(1);
+
+            if (succes)
+                RandomGoodEventMessage(sideName);
         }
 
-        void BadEvent()
+        void BadEvent(string sideName)
         {
-            side.ChangeRandomState(-1);
-            RandomBadEventMessage();
+            bool success = side.ChangeRandomState(-1);
+
+            if (success)
+                RandomBadEventMessage(sideName);
         }
     }
-    private void RandomBadEventMessage()
+    private void RandomBadEventMessage(string sidename)
     {
-        messageText.SetText("Good event!");
+        int randomBadInt= Random.Range(0, randomBadMessages.Length - 1);
+
+        string randomBadString = randomBadMessages[randomBadInt];
+
+        messageText.SetText($"{sidename}'s {randomBadString}");
     }
-    private void RandomGoodEventMessage()
+    private void RandomGoodEventMessage(string sidename)
     {
-        messageText.SetText("Bad event!");
+        int randomGoodInt = Random.Range(0, randomGoodMessages.Length - 1);
+
+        string randomGoodString = randomGoodMessages[randomGoodInt];
+
+        messageText.SetText($"{sidename}'s {randomGoodString}");
     }
 }

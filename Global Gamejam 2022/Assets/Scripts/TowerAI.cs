@@ -22,15 +22,11 @@ public class TowerAI : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
     
-    // Start is called before the first frame update
+
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
-    }
-    // Updates the target of nearest enemy to the tower
-    void UpdateTarget()
-    {
-        if(gameObject.tag == "Dark")
+        if (gameObject.tag == "Dark")
         {
             enemyTag = "Light";
         }
@@ -38,28 +34,38 @@ public class TowerAI : MonoBehaviour
         {
             enemyTag = "Dark";
         }
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-        float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
-        foreach(GameObject enemy in enemies)
+    }
+
+    void UpdateTarget()
+    {
+        if (!target) // Look for enemy if not fighting one
         {
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if(distanceToEnemy < shortestDistance)
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, range);
+            Collider closestEnemy = null;
+            float closestDistance = Mathf.Infinity;
+
+            for (int i = 0; i < hitColliders.Length; i++)
             {
-                shortestDistance = distanceToEnemy;
-                nearestEnemy = enemy;
+                Collider hitCollider = hitColliders[i];
+                if (hitCollider.tag == enemyTag)
+                {
+                    float distance = Vector3.Distance(transform.position, hitCollider.transform.position);
+                    if (distance < closestDistance)
+                    {
+                        closestEnemy = hitCollider;
+                        closestDistance = distance;
+                    }
+                }
+            }
+
+            if (closestEnemy != null)
+            {
+                // ADD currentEnemy is either AI or TowerAI
+                target = closestEnemy.transform;
             }
         }
-        if (nearestEnemy != null && shortestDistance <= range)
-        {
-            target = nearestEnemy.transform;
-        }
-        else
-        {
-            target = null;
-        }
     }
-    // Update is called once per frame
+
     void Update()
     {
         if (target == null)
