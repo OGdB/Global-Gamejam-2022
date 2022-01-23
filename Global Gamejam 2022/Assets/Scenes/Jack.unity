@@ -4071,6 +4071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1705d6aed49b4b643864cef5e973f63b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisTag: 
   spawnPoint: {fileID: 0}
   soldierPrefabs: []
   lightBase: {fileID: 0}
@@ -4078,8 +4079,11 @@ MonoBehaviour:
   spawnTroopInterval: 10
   defenseText: {fileID: 494545616}
   techText: {fileID: 1088369409}
-  defenseImaget: {fileID: 0}
-  techImage: {fileID: 0}
+  defenseImage: {fileID: 1570014798}
+  techImage: {fileID: 1415717917}
+  stoneAgeImg: {fileID: 21300000, guid: a872654c723a71948aeee0670dced7a6, type: 3}
+  BronzeAgeImg: {fileID: 21300000, guid: 5a67a5b81065de64ba712eb2c0c75055, type: 3}
+  IronAgeImg: {fileID: 21300000, guid: a54afe0884ce61741af7fa1831b6be5f, type: 3}
 --- !u!4 &1648647007
 Transform:
   m_ObjectHideFlags: 0
@@ -5449,6 +5453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1705d6aed49b4b643864cef5e973f63b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisTag: 
   spawnPoint: {fileID: 0}
   soldierPrefabs: []
   lightBase: {fileID: 0}
@@ -5456,8 +5461,11 @@ MonoBehaviour:
   spawnTroopInterval: 10
   defenseText: {fileID: 446181025}
   techText: {fileID: 6411914}
-  defenseImaget: {fileID: 0}
-  techImage: {fileID: 0}
+  defenseImage: {fileID: 994992923}
+  techImage: {fileID: 66030482}
+  stoneAgeImg: {fileID: 21300000, guid: e724f491bb691bd4b9e3f8231c05fa53, type: 3}
+  BronzeAgeImg: {fileID: 21300000, guid: b956b54907d1fdf4c98e00dbb139d7e2, type: 3}
+  IronAgeImg: {fileID: 21300000, guid: 84a2960f97659c642bf32dae8da5b6a2, type: 3}
 --- !u!4 &2043056563
 Transform:
   m_ObjectHideFlags: 0
