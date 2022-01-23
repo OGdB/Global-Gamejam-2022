@@ -122,7 +122,12 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 37704d0979c0af14197a79fb8e314eb6, type: 2}
+--- !u!4 &24947631 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2537958203884802623, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
+  m_PrefabInstance: {fileID: 2537958203865119120}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &135492715 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5124968518587079323, guid: 924689dd8037bdd47b501176f5fff786, type: 3}
@@ -342,6 +347,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1344236957 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2537958205207893005, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
+  m_PrefabInstance: {fileID: 2537958203865119120}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1373244561 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5124968517903852129, guid: 924689dd8037bdd47b501176f5fff786, type: 3}
@@ -687,7 +697,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Message1234567123
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -786,6 +796,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map
       objectReference: {fileID: 0}
+    - target: {fileID: 2537958203864773414, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
+      propertyPath: m_TagString
+      value: Dark
+      objectReference: {fileID: 0}
+    - target: {fileID: 2537958204034107737, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2537958204371522934, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2537958204522163818, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
+      propertyPath: m_TagString
+      value: Light
+      objectReference: {fileID: 0}
     - target: {fileID: 6295851736798281598, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -840,9 +866,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3358507229688004012, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
+      propertyPath: darkBase
+      value: 
+      objectReference: {fileID: 1344236957}
+    - target: {fileID: 3358507229688004012, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
       propertyPath: techText
       value: 
       objectReference: {fileID: 1373244561}
+    - target: {fileID: 3358507229688004012, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
+      propertyPath: lightBase
+      value: 
+      objectReference: {fileID: 24947631}
     - target: {fileID: 3358507229688004012, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
       propertyPath: spawnPoint
       value: 
@@ -851,10 +885,46 @@ PrefabInstance:
       propertyPath: defenseText
       value: 
       objectReference: {fileID: 1160841456}
+    - target: {fileID: 3358507229688004012, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
+      propertyPath: spawnTroopInterval
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3358507229688004012, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
+      propertyPath: soldierPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1335765064934066127, guid: 97148d739b2485946ac10b6f4960bf2f, type: 3}
+    - target: {fileID: 3358507229688004012, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
+      propertyPath: soldierPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 6339415403353677038, guid: 9a517ae3cd9ebc24c88215273d5acb9f, type: 3}
+    - target: {fileID: 3358507229688004012, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
+      propertyPath: soldierPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 9096933981032908937, guid: edaad1466466cf6448b8d646e31af2f7, type: 3}
+    - target: {fileID: 3358507229688004015, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
+      propertyPath: m_TagString
+      value: Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 3358507230286572310, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
+      propertyPath: messageText
+      value: 
+      objectReference: {fileID: 984110709769778710}
+    - target: {fileID: 3358507230930162636, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
+      propertyPath: m_TagString
+      value: Dark
+      objectReference: {fileID: 0}
+    - target: {fileID: 3358507230930162637, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
+      propertyPath: darkBase
+      value: 
+      objectReference: {fileID: 1344236957}
     - target: {fileID: 3358507230930162637, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
       propertyPath: techText
       value: 
       objectReference: {fileID: 135492715}
+    - target: {fileID: 3358507230930162637, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
+      propertyPath: lightBase
+      value: 
+      objectReference: {fileID: 24947631}
     - target: {fileID: 3358507230930162637, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
       propertyPath: spawnPoint
       value: 
@@ -863,6 +933,22 @@ PrefabInstance:
       propertyPath: defenseText
       value: 
       objectReference: {fileID: 461142349}
+    - target: {fileID: 3358507230930162637, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
+      propertyPath: spawnTroopInterval
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3358507230930162637, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
+      propertyPath: soldierPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1335765064934066127, guid: 9b0c1dadfc27df54caf07e6334599ea5, type: 3}
+    - target: {fileID: 3358507230930162637, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
+      propertyPath: soldierPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 6339415403353677038, guid: 59a4b24213caaa24f84b5434f5482289, type: 3}
+    - target: {fileID: 3358507230930162637, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
+      propertyPath: soldierPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 9096933981032908937, guid: a9651c298cefeec49ac569169903220d, type: 3}
     - target: {fileID: 6641106808215127866, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
       propertyPath: m_Name
       value: Managers
