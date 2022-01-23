@@ -8,7 +8,7 @@ public class SideManager : MonoBehaviour
     private StateEnum technologyState = new StateEnum(0);
     [SerializeField]
     private Transform spawnPoint;
-    [SerializeField] private GameObject[] soldierPrefabs;
+    [SerializeField] private GameObject[] soldierPrefabs; // Soldier prefabs in the order of worst to best
 
     public Transform lightBase;
     public Transform darkBase;
