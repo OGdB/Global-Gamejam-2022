@@ -3610,6 +3610,7 @@ MonoBehaviour:
   stoneAgeImg: {fileID: 21300000, guid: a872654c723a71948aeee0670dced7a6, type: 3}
   BronzeAgeImg: {fileID: 21300000, guid: 5a67a5b81065de64ba712eb2c0c75055, type: 3}
   IronAgeImg: {fileID: 21300000, guid: a54afe0884ce61741af7fa1831b6be5f, type: 3}
+  loseScreen: {fileID: 0}
 --- !u!4 &963528560
 Transform:
   m_ObjectHideFlags: 0
@@ -5297,6 +5298,7 @@ MonoBehaviour:
   stoneAgeImg: {fileID: 21300000, guid: e724f491bb691bd4b9e3f8231c05fa53, type: 3}
   BronzeAgeImg: {fileID: 21300000, guid: b956b54907d1fdf4c98e00dbb139d7e2, type: 3}
   IronAgeImg: {fileID: 21300000, guid: 84a2960f97659c642bf32dae8da5b6a2, type: 3}
+  loseScreen: {fileID: 0}
 --- !u!4 &1664524467
 Transform:
   m_ObjectHideFlags: 0
@@ -5477,6 +5479,8 @@ MonoBehaviour:
   darkSideManager: {fileID: 1664524466}
   messageText: {fileID: 1129124065}
   eventInterval: 6
+  randomBadMessages: []
+  randomGoodMessages: []
 --- !u!4 &1705578505
 Transform:
   m_ObjectHideFlags: 0
