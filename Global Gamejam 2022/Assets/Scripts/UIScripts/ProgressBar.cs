@@ -13,7 +13,7 @@ public class ProgressBar : MonoBehaviour
 
     private void FixedUpdate()
     {
-        int totalTowers = darkSideManager.amountOfTowersLeft + lightSideManager.amountOfTowersLeft;
+        totalTowers = darkSideManager.amountOfTowersLeft + lightSideManager.amountOfTowersLeft;
         slider.SetValueWithoutNotify(darkSideManager.amountOfTowersLeft / totalTowers);
     }
 }
