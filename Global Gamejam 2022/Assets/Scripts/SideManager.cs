@@ -8,7 +8,10 @@ public class SideManager : MonoBehaviour
     public StateEnum technologyState = new StateEnum(0);
     [SerializeField]
     private Transform spawnPoint;
+    [SerializeField]
+    private Transform enemySpawnPoint;
     [SerializeField] private GameObject[] soldierPrefabs; // Soldier prefabs in the order of worst to best
+    private Coroutine spawnCoroutine;
 
     public Transform lightBase;
     public Transform darkBase;
@@ -16,7 +19,7 @@ public class SideManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SpawnTroopLoop());
+        spawnCoroutine = StartCoroutine(SpawnTroopLoop());
     }
     public void ChangeDefensesState(int change)
     {
@@ -92,15 +95,29 @@ public class SideManager : MonoBehaviour
 
     public void SpawnTroop()
     {
-        GameObject newTroop = Instantiate(soldierPrefabs[(int)technologyState.currentState], position: spawnPoint.position, Quaternion.identity);
-        // Find enemy base
-        if (thisTag == "Dark")
+        if (spawnPoint != null && enemySpawnPoint != null)
         {
-            newTroop.GetComponent<AI>().targetBase = transform.TransformPoint(lightBase.position);
+            GameObject newTroop = Instantiate(soldierPrefabs[(int)technologyState.currentState], position: spawnPoint.position, Quaternion.identity);
+            // Find enemy base
+            if (thisTag == "Dark")
+            {
+                newTroop.GetComponent<AI>().targetBase = transform.TransformPoint(lightBase.position);
+            }
+            else
+            {
+                newTroop.GetComponent<AI>().targetBase = transform.TransformPoint(darkBase.position);
+            }
         }
         else
         {
-            newTroop.GetComponent<AI>().targetBase = transform.TransformPoint(darkBase.position);
+            if (spawnPoint == null)
+                print($"{thisTag}'s spawnpoint destroyed!");
+            else
+                print("Enemy spawnpoint destroyed!");
+
+            StopCoroutine(spawnCoroutine);
+
+            // GAME OVER SCREEN
         }
     }
 
