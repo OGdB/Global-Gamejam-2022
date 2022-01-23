@@ -43,7 +43,7 @@ public class AI : MonoBehaviour
             for (int i = 0; i < hitColliders.Length; i++)
             {
                 Collider hitCollider = hitColliders[i];
-                if (hitCollider.tag == enemyTag)
+                if (hitCollider.tag == enemyTag && hitCollider.GetComponent<Collider>() != null)
                 {
                     float distance = Vector3.Distance(transform.position, hitCollider.transform.position);
                     if (distance < closestDistance)
