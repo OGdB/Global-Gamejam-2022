@@ -57,7 +57,8 @@ public class InteractionsManager : MonoBehaviour
     // Update is called once per frame
     public void PurchaseDefenseBuff(SideManager side)
     {
-        if (currentChaosPoint >= 25 && side.defensesState.currentState != StateEnum.CurrentState.level2)
+        print("boop");
+        if (currentChaosPoint >= 25 && side.defensesState.currentState != StateEnum.CurrentState.level3)
         {
             changeChaosPoints(-25);
             side.ChangeDefensesState(1);
@@ -65,6 +66,7 @@ public class InteractionsManager : MonoBehaviour
     }
     public void PurchaseDefenseDebuff(SideManager side)
     {
+        print("boop");
         if (currentChaosPoint >= 25&& side.defensesState.currentState!= 0)
         {
             changeChaosPoints(-25);
@@ -73,7 +75,8 @@ public class InteractionsManager : MonoBehaviour
     }
     public void PurchaseTechnologyBuff(SideManager side)
     {
-        if (currentChaosPoint >= 25 && side.technologyState.currentState != StateEnum.CurrentState.level2)
+        print("boop");
+        if (currentChaosPoint >= 25 && side.technologyState.currentState != StateEnum.CurrentState.level3)
         {
             changeChaosPoints(-25);
             side.ChangeTechnologyState(1);
@@ -81,6 +84,7 @@ public class InteractionsManager : MonoBehaviour
     }
     public void PurchaseTechnologyDebuff(SideManager side)
     {
+        print("boop");
         if (currentChaosPoint >= 25 && side.technologyState.currentState != 0)
         {
             changeChaosPoints(-25);
