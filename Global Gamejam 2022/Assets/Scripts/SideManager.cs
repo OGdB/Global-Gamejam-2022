@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class SideManager : MonoBehaviour
@@ -8,7 +9,10 @@ public class SideManager : MonoBehaviour
     public StateEnum technologyState = new StateEnum(0);
     [SerializeField]
     private Transform spawnPoint;
+    [SerializeField]
+    private Transform enemySpawnPoint;
     [SerializeField] private GameObject[] soldierPrefabs; // Soldier prefabs in the order of worst to best
+    private Coroutine spawnCoroutine;
 
     public Transform lightBase;
     public Transform darkBase;
@@ -16,36 +20,40 @@ public class SideManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SpawnTroopLoop());
+        spawnCoroutine = StartCoroutine(SpawnTroopLoop());
     }
-    public void ChangeDefensesState(int change)
+    public bool ChangeDefensesState(int change)
     {
-        if (change <= -1 && defensesState.currentState == 0)
-            return;
+        if (change <= -1 && defensesState.currentState == StateEnum.CurrentState.level1)
+            return false;
 
         defensesState.currentState += change;
 
         UpdateStates();
+        return true;
     }
-    public void ChangeTechnologyState(int change)
+    public bool ChangeTechnologyState(int change)
     {
-        if ((change <= -1 && technologyState.currentState == 0) || (change <= 1 && technologyState.currentState == StateEnum.CurrentState.bad))
-            return;
+        if ((change <= -1 && technologyState.currentState == StateEnum.CurrentState.level1) || (change >= 1 && technologyState.currentState == StateEnum.CurrentState.level2))
+            return false;
 
         technologyState.currentState += change;
 
         UpdateStates();
+        return true;
     }
-    public void ChangeRandomState(int change)
+    public bool ChangeRandomState(int change)
     {
         float random = Random.Range(-1f, 1f);
         if (random < 0)
         {
-            ChangeDefensesState(change);
+            bool success = ChangeDefensesState(change);
+            return success;
         }
         else
         {
-            ChangeTechnologyState(change);
+            bool success = ChangeTechnologyState(change);
+            return success;
         }
     }
 
@@ -58,6 +66,13 @@ public class SideManager : MonoBehaviour
     [SerializeField] private Sprite stoneAgeImg;
     [SerializeField] private Sprite BronzeAgeImg;
     [SerializeField] private Sprite IronAgeImg;
+    [SerializeField] private GameObject loseScreen;
+    [SerializeField] private Image BalancedefenseImage;
+    [SerializeField] private Image BalancetechImage;
+    [SerializeField] private Sprite Level1Img;
+    [SerializeField] private Sprite Level2Img;
+    [SerializeField] private Sprite Level3Img;
+    
 
     public void Awake()
     {
@@ -71,20 +86,41 @@ public class SideManager : MonoBehaviour
     {
         defenseText.SetText(defensesState.GetStateString());
         techText.SetText(technologyState.GetTechnologyString());
-        switch (technologyState.GetTechnologyString())
+        switch (defensesState.GetStateString())
         {
-            case "Stone Age":
-                techImage.sprite = stoneAgeImg;
+            case "level1":
+                defenseImage.sprite = Level1Img;
+                BalancedefenseImage.sprite = Level1Img;
                 break;
-            case "Bronze Age":
-                techImage.sprite = BronzeAgeImg;
+            case "level2":
+                defenseImage.sprite = Level2Img;
+                BalancedefenseImage.sprite = Level1Img;
                 break;
-            case "Iron Age":
-                techImage.sprite = IronAgeImg;
+            case "level3":
+                defenseImage.sprite = Level3Img;
+                BalancedefenseImage.sprite = Level1Img;
                 break;
             default:
                 break;
         }
+        switch (technologyState.GetTechnologyString())
+        {
+            case "Stone Age":
+                techImage.sprite = stoneAgeImg;
+                BalancetechImage.sprite = stoneAgeImg;
+                break;
+            case "Bronze Age":
+                techImage.sprite = BronzeAgeImg;
+                BalancetechImage.sprite = stoneAgeImg;
+                break;
+            case "Iron Age":
+                techImage.sprite = IronAgeImg;
+                BalancetechImage.sprite = stoneAgeImg;
+                break;
+            default:
+                break;
+        }
+       
 
     }
 
@@ -92,15 +128,39 @@ public class SideManager : MonoBehaviour
 
     public void SpawnTroop()
     {
-        GameObject newTroop = Instantiate(soldierPrefabs[(int)technologyState.currentState], position: spawnPoint.position, Quaternion.identity);
-        // Find enemy base
-        if (thisTag == "Dark")
+        if (spawnPoint.gameObject.activeInHierarchy && enemySpawnPoint.gameObject.activeInHierarchy)
         {
-            newTroop.GetComponent<AI>().targetBase = transform.TransformPoint(lightBase.position);
+            GameObject newTroop = Instantiate(soldierPrefabs[(int)technologyState.currentState], position: spawnPoint.position, Quaternion.identity);
+            // Find enemy base
+            if (thisTag == "Dark")
+            {
+                newTroop.GetComponent<AI>().targetBase = lightBase.position;
+            }
+            else
+            {
+                newTroop.GetComponent<AI>().targetBase = darkBase.position;
+            }
         }
         else
         {
-            newTroop.GetComponent<AI>().targetBase = transform.TransformPoint(darkBase.position);
+            if (!spawnPoint.gameObject.activeInHierarchy) // if this spawnpoint was destroyed
+            {
+                Blackboard.loser = thisTag;
+                if (thisTag == "Light")
+                {
+                    Blackboard.winner = "Dark";
+                }
+                else if (thisTag == "Dark")
+                {
+                    Blackboard.winner = "Light";
+                }
+            }
+
+            StopCoroutine(spawnCoroutine);
+
+            // GAME OVER SCREEN
+            loseScreen.SetActive(true);
+
         }
     }
 

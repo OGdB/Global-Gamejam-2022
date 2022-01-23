@@ -8,6 +8,7 @@ public class AI : MonoBehaviour
     private Strength strength;
     private NavMeshAgent agent;
     public Vector3 targetBase;
+    public float enemyDetectionRange = 8f;
     public string enemyTag;
     private Health currentEnemy;
     private bool attackCooldown = false;
@@ -33,9 +34,9 @@ public class AI : MonoBehaviour
     }
     private void Update()
     {
-        if (!currentEnemy)
+        if (!currentEnemy) // Look for enemy if not fighting one
         {
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, 20f);
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, enemyDetectionRange);
             Collider closestEnemy = null;
             float closestDistance = Mathf.Infinity;
 
@@ -72,14 +73,15 @@ public class AI : MonoBehaviour
             if (Vector3.Distance(transform.position, currentEnemy.transform.position) < 1.5f && !attackCooldown)
             {
                 StartCoroutine(AttackCooldown());
-                bool killed = currentEnemy.GetComponent<Health>().Damage(10);
+                // Damage returns whether the enemy was killed or not
+                bool killed = currentEnemy.Damage((int)(10 * strength.Power));
 
                 if (killed)
                 {
                     currentEnemy = null;
+                    MoveToDestination(targetBase); // Continue moving towards enemy base
                 }
             }
-
         }
     }
     private IEnumerator AttackCooldown()
