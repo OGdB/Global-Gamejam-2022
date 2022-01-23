@@ -1,20 +1,16 @@
 public class StateEnum
 {
     public CurrentState currentState;
-    public StateEnum(CurrentState currentState = CurrentState.average)
+    public StateEnum(CurrentState currentState = CurrentState.level2)
     {
         this.currentState = currentState;
     }
 
     public enum CurrentState
     {
-        horrible = 0,
-        very_bad = 1,
-        bad = 2,
-        average = 3,
-        good = 4,
-        very_good = 5,
-        excellent = 6
+        level1 = 0,
+        level2 = 1,
+        level3 = 2,
     };
 
     public void ChangeState(int change) => currentState += change;
@@ -26,20 +22,12 @@ public class StateEnum
     {
         switch (currentState)
         {
-            case CurrentState.horrible:
-                return "Horrible";
-            case CurrentState.very_bad:
-                return "Very Bad";
-            case CurrentState.bad:
-                return "Bad";
-            case CurrentState.average:
-                return "Average";
-            case CurrentState.good:
-                return "Good";
-            case CurrentState.very_good:
-                return "Very Good";
-            case CurrentState.excellent:
-                return "Excellent";
+            case CurrentState.level1:
+                return "Level 1";
+            case CurrentState.level2:
+                return "Level 2";
+            case CurrentState.level3:
+                return "Level 3";
             default: 
                 return null;
         }
@@ -52,11 +40,11 @@ public class StateEnum
     {
         switch (currentState)
         {
-            case CurrentState.horrible:
+            case CurrentState.level1:
                 return "Stone Age";
-            case CurrentState.very_bad:
+            case CurrentState.level2:
                 return "Bronze Age";
-            case CurrentState.bad:
+            case CurrentState.level3:
                 return "Iron Age";
             default:
                 return null;
