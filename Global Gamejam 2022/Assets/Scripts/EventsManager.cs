@@ -35,7 +35,11 @@ public class EventsManager : MonoBehaviour
                 RandomEvent(lightSideManager);
             else
                 RandomEvent(darkSideManager);
-            eventInterval -= eventIntervalDecreaseRate;
+
+            if (eventInterval > 1)
+            {
+                eventInterval -= eventIntervalDecreaseRate;
+            }
         }
     }
 
