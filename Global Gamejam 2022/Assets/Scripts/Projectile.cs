@@ -8,11 +8,7 @@ public class Projectile : MonoBehaviour
     public float myRange = 10f;
     private float myDist;
     private Transform target;
-    // Start is called before the first frame update
-    void Start()
-    {
-   
-    }
+
     //Seeks out a target
     public void Seek(Transform _target)
     {
@@ -35,26 +31,22 @@ public class Projectile : MonoBehaviour
         }
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
     }
-
     //What happens when you hit a target
-    [System.Obsolete]
     void HitTarget()
     {
-        //Do damage to enemy
-        float randomInt = Random.RandomRange(0, 100);
-        if(randomInt <= 20f)
+        float randomFloat = Random.Range(0f, 100f);
+        if(randomFloat <= 20f)
         {
-            //damage(0);
+            target.GetComponent<Health>().Damage(0);
         }
-        else if(20f < randomInt && randomInt <= 95f)
+        else if(20f<randomFloat&&randomFloat<=95f)
         {
-            //damage(10);
+            target.GetComponent<Health>().Damage(5);
         }
         else
         {
-            //damage(20);
+            target.GetComponent<Health>().Damage(10);
         }
         Destroy(gameObject);
-
     }
 }

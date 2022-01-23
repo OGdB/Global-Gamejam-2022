@@ -5,21 +5,27 @@ using UnityEngine.AI;
 [DisallowMultipleComponent]
 public class AI : MonoBehaviour
 {
-    private Health health;
     private Strength strength;
     private NavMeshAgent agent;
     public Vector3 targetBase;
     public string enemyTag;
-    public bool isFighting = false;
-    private AI currentEnemy;
+    private Health currentEnemy;
     private bool attackCooldown = false;
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        health = GetComponent<Health>();
         strength = GetComponent<Strength>();
         MoveToDestination(targetBase);
+
+        if (gameObject.tag == "Dark")
+        {
+            enemyTag = "Light";
+        }
+        else
+        {
+            enemyTag = "Dark";
+        }
     }
     private void MoveToDestination(Vector3 destination)
     {
@@ -27,9 +33,9 @@ public class AI : MonoBehaviour
     }
     private void Update()
     {
-        if (!isFighting)
+        if (!currentEnemy)
         {
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, 4f);
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, 20f);
             Collider closestEnemy = null;
             float closestDistance = Mathf.Infinity;
 
@@ -49,18 +55,16 @@ public class AI : MonoBehaviour
 
             if (closestEnemy != null)
             {
-                isFighting = true;
-                print(closestEnemy.GetComponent<AI>());
-
                 // ADD currentEnemy is either AI or TowerAI
-                currentEnemy = closestEnemy.GetComponent<AI>();
+                currentEnemy = closestEnemy.GetComponent<Health>();
 
                 // Start attacking the enemy
                 MoveToDestination(closestEnemy.transform.position);
             }
         }
 
-        if (currentEnemy)
+        // if there is an enemy
+        if (currentEnemy != null)
         {
             MoveToDestination(currentEnemy.transform.position);
 
@@ -68,19 +72,21 @@ public class AI : MonoBehaviour
             if (Vector3.Distance(transform.position, currentEnemy.transform.position) < 1.5f && !attackCooldown)
             {
                 StartCoroutine(AttackCooldown());
-                health.Damage(10);
-                if (currentEnemy.isActiveAndEnabled)
+                bool killed = currentEnemy.GetComponent<Health>().Damage(10);
+
+                if (killed)
                 {
-                    isFighting = false;
                     currentEnemy = null;
                 }
             }
+
         }
     }
     private IEnumerator AttackCooldown()
     {
         attackCooldown = true;
-        yield return new WaitForSeconds(2f);
+        float randomFloat = Random.Range(1.5f, 2.25f);
+        yield return new WaitForSeconds(randomFloat);
         attackCooldown = false;
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SideManager : MonoBehaviour
 {
+    public string thisTag;
     private StateEnum defensesState = new StateEnum();
     private StateEnum technologyState = new StateEnum(0);
     [SerializeField]
@@ -66,22 +67,19 @@ public class SideManager : MonoBehaviour
         techText.SetText(technologyState.GetTechnologyString());
     }
 
-    /// <summary>
-    /// Spawn a
-    /// </summary>
+
+
     public void SpawnTroop()
     {
         GameObject newTroop = Instantiate(soldierPrefabs[(int)technologyState.currentState], position: spawnPoint.position, Quaternion.identity);
         // Find enemy base
-        if (gameObject.tag == "Dark")
+        if (thisTag == "Dark")
         {
             newTroop.GetComponent<AI>().targetBase = transform.TransformPoint(lightBase.position);
-            newTroop.GetComponent<AI>().enemyTag = "Light";
         }
         else
         {
             newTroop.GetComponent<AI>().targetBase = transform.TransformPoint(darkBase.position);
-            newTroop.GetComponent<AI>().enemyTag = "Dark";
         }
     }
 
