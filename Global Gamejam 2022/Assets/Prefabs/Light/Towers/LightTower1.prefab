@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0f8040834b77b34db71708851f909fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 3.42
+  range: 4
   firerate: 1
   enemyTag: Dark
   partToRotate: {fileID: 1980798022600081569}

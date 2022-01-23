@@ -1,27 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class SideManager : MonoBehaviour
 {
-    public string thisTag;
     public StateEnum defensesState = new StateEnum();
     public StateEnum technologyState = new StateEnum(0);
-    [SerializeField]
-    private Transform spawnPoint;
-    [SerializeField]
-    private Transform enemySpawnPoint;
-    [SerializeField] private GameObject[] soldierPrefabs; // Soldier prefabs in the order of worst to best
-    private Coroutine spawnCoroutine;
+
+    public GameObject[] soldierPrefabs; // Soldier prefabs in the order of worst to best
 
     public Transform lightBase;
     public Transform darkBase;
-    public int spawnTroopInterval = 10;
 
-    private void Start()
+    public void Awake()
     {
-        spawnCoroutine = StartCoroutine(SpawnTroopLoop());
+        SetCurrentTroop();
+        UpdateStates();
     }
+
+
     public bool ChangeDefensesState(int change)
     {
         if (change <= -1 && defensesState.currentState == StateEnum.CurrentState.level1)
@@ -38,10 +33,24 @@ public class SideManager : MonoBehaviour
             return false;
 
         technologyState.currentState += change;
+        SetCurrentTroop();
 
         UpdateStates();
         return true;
     }
+
+    private void SetCurrentTroop()
+    {
+        if (gameObject.tag == "Dark")
+        {
+            Blackboard.currentDarkTroop = soldierPrefabs[(int)technologyState.currentState];
+        }
+        else if (gameObject.tag == "Light")
+        {
+            Blackboard.currentLightTroop = soldierPrefabs[(int)technologyState.currentState];
+        }
+    }
+
     public bool ChangeRandomState(int change)
     {
         float random = Random.Range(-1f, 1f);
@@ -73,12 +82,6 @@ public class SideManager : MonoBehaviour
     [SerializeField] private Sprite Level2Img;
     [SerializeField] private Sprite Level3Img;
     
-
-    public void Awake()
-    {
-        UpdateStates();
-    }
-
     /// <summary>
     /// Updates the states visually
     /// </summary>
@@ -122,54 +125,5 @@ public class SideManager : MonoBehaviour
         }
        
 
-    }
-
-
-
-    public void SpawnTroop()
-    {
-        if (spawnPoint.gameObject.activeInHierarchy && enemySpawnPoint.gameObject.activeInHierarchy)
-        {
-            GameObject newTroop = Instantiate(soldierPrefabs[(int)technologyState.currentState], position: spawnPoint.position, Quaternion.identity);
-            // Find enemy base
-            if (thisTag == "Dark")
-            {
-                newTroop.GetComponent<AI>().targetBase = lightBase.position;
-            }
-            else
-            {
-                newTroop.GetComponent<AI>().targetBase = darkBase.position;
-            }
-        }
-        else
-        {
-            if (!spawnPoint.gameObject.activeInHierarchy) // if this spawnpoint was destroyed
-            {
-                Blackboard.loser = thisTag;
-                if (thisTag == "Light")
-                {
-                    Blackboard.winner = "Dark";
-                }
-                else if (thisTag == "Dark")
-                {
-                    Blackboard.winner = "Light";
-                }
-            }
-
-            StopCoroutine(spawnCoroutine);
-
-            // GAME OVER SCREEN
-            loseScreen.SetActive(true);
-
-        }
-    }
-
-    private IEnumerator SpawnTroopLoop()
-    {
-        while (Application.isPlaying)
-        {
-            yield return new WaitForSeconds(spawnTroopInterval);
-            SpawnTroop();
-        }
     }
 }

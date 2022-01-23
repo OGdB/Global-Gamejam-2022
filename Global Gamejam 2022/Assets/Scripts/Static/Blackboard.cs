@@ -7,5 +7,6 @@ public class Blackboard
     public static string winner; // Side that won
     public static string loser; // Side that lost
 
-
+    public static GameObject currentLightTroop;
+    public static GameObject currentDarkTroop;
 }

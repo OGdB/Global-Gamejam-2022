@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 741824686902757865}
   m_Layer: 0
   m_Name: LightManager
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 741824687474311129}
   m_Layer: 0
   m_Name: DarkManager
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
