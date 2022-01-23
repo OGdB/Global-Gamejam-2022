@@ -1,149 +1,101 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InteractionsManager : MonoBehaviour
 {
-    public Button DefenseBuffButton;
-    public Button DefenseDebuffButton;
     public Button DarkDefenseBuffButton;
     public Button LightDefenseBuffButton;
     public Button DarkDefenseDebuffButton;
     public Button LightDefenseDebuffButton;
-    public Button TechnologyBuffButton;
-    public Button TechnologyDebuffButton;
     public Button DarkTechnologyBuffButton;
     public Button LightTechnologyBuffButton;
     public Button DarkTechnologyDebuffButton;
     public Button LightTechnologyDebuffButton;
 
+    public Slider ChaosPointsBar;
+    private int maxChaosPoints = 100;
+    private int currentChaosPoint = 0;
+    public float ChargeRate = 0.5f;
+    //public TextMesh ChaosPointsCount;
+
+    
     // Start is called before the first frame update
     void Start()
     {
-        DarkDefenseBuffButton.enabled = false;
-        LightDefenseBuffButton.enabled = false;
-        DarkDefenseDebuffButton.enabled = false;
-        LightDefenseDebuffButton.enabled = false;
-        DarkTechnologyBuffButton.enabled = false;
-        LightTechnologyBuffButton.enabled = false;
-        DarkTechnologyDebuffButton.enabled = false;
-        LightTechnologyDebuffButton.enabled = false;
+        //setup Buttons
+        /*DarkDefenseBuffButton.GetComponentInChildren<TextMeshPro>().text = "DarkD__++:\n25CP";
+        LightDefenseBuffButton.GetComponentInChildren<TextMeshPro>().text = "LightD__++:\n25CP";
+        DarkDefenseDebuffButton.GetComponentInChildren<TextMeshPro>().text = "DarkD__--:\n25CP";
+        LightDefenseDebuffButton.GetComponentInChildren<TextMeshPro>().text = "LightD__--:\n25CP";
+        DarkTechnologyBuffButton.GetComponentInChildren<TextMeshPro>().text = "DarkT__++:\n25CP";
+        LightTechnologyBuffButton.GetComponentInChildren<TextMeshPro>().text = "LightT__++:\n25CP";
+        DarkTechnologyDebuffButton.GetComponentInChildren<TextMeshPro>().text = "DarkT__--:\n25CP";
+        LightTechnologyDebuffButton.GetComponentInChildren<TextMeshPro>().text = "LightT__--:\n25CP";*/
+
+        //setup chaos points bar
+        ChaosPointsBar.SetValueWithoutNotify(currentChaosPoint);
+        
+        //ChaosPointsCount.text = currentChaosPoint.ToString();
+        StartCoroutine(EventsLoop());
     }
 
     // Update is called once per frame
-    public void DefenseBuffOnclick()
+    public void PurchaseDefenseBuff(SideManager side)
     {
-        //if CP>30
-        DefenseBuffButton.enabled = false;
-        DarkDefenseBuffButton.enabled = true;
-        LightDefenseBuffButton.enabled = true;
+        if (currentChaosPoint >= 25)
+        {
+            changeChaosPoints(-25);
+            side.ChangeDefensesState(1);
+        }
     }
-    public void DefenseDebuffOnclick()
+    public void PurchaseDefenseDebuff(SideManager side)
     {
-        //if CP>30
-        DefenseDebuffButton.enabled = false;
-        DarkDefenseDebuffButton.enabled = true;
-        LightDefenseDebuffButton.enabled = true;
+        if (currentChaosPoint >= 25)
+        {
+            changeChaosPoints(-25);
+            side.ChangeDefensesState(-1);
+        }
     }
-    public void DarkDefenseBuffOnclick()
+    public void PurchaseTechnologyBuff(SideManager side)
     {
-        print("boop");
-        //call side function
-        //CP-=30
-        DefenseBuffButton.enabled = true;
-        DarkDefenseBuffButton.enabled = false ;
-        LightDefenseBuffButton.enabled = false;
-
+        if (currentChaosPoint >= 25)
+        {
+            changeChaosPoints(-25);
+            side.ChangeDefensesState(1);
+        }
     }
-    public void LightDefenseBuffOnclick()
+    public void PurchaseTechnologyDebuff(SideManager side)
     {
-        print("boop");
-        //call side function
-        //CP-=30
-        DefenseBuffButton.enabled = true;
-        DarkDefenseBuffButton.enabled = false;
-        LightDefenseBuffButton.enabled = false;
-
+        if (currentChaosPoint >= 25)
+        {
+            changeChaosPoints(-25);
+            side.ChangeDefensesState(-1);
+        }
     }
-    public void DarkDefenseDebuffOnclick()
+    
+    
+    private IEnumerator EventsLoop()
     {
-        print("boop");
-        //call side function
-        //CP-=30
-        DefenseDebuffButton.enabled = true;
-        DarkDefenseDebuffButton.enabled = false;
-        LightDefenseDebuffButton.enabled = false;
-
-    }
-    public void LightDefenseDebuffOnclick()
+        while (Application.isPlaying)
+        {
+            // Wait for interval
+            yield return new WaitForSeconds(ChargeRate);
+            if (currentChaosPoint <= maxChaosPoints-5)
+            {
+                changeChaosPoints(5);
+            }
+            
+        }
+    
+}
+    public void changeChaosPoints(int amount)
     {
-        print("boop");
-        //call side function
-        //CP-=30
-        DefenseDebuffButton.enabled = true;
-        DarkDefenseDebuffButton.enabled = false;
-        LightDefenseDebuffButton.enabled = false;
-
-    }
-    public void TechnologyBuffOnclick()
-    {
-        //if CP>30
-        TechnologyBuffButton.enabled = false;
-        DarkTechnologyBuffButton.enabled = true;
-        LightTechnologyBuffButton.enabled = true;
-
-    }
-    public void TechnologyDebuffOnclick()
-    {
-        //if CP>30
-        TechnologyDebuffButton.enabled = false;
-        DarkTechnologyDebuffButton.enabled = true;
-        LightTechnologyDebuffButton.enabled = true;
-
-    }
-    public void DarkTechnologyBuffOnclick()
-    {
-        print("boop");
-        //call side function
-        //CP-=30
-        TechnologyBuffButton.enabled = true;
-        DarkTechnologyBuffButton.enabled = false;
-        LightTechnologyBuffButton.enabled = false;
-
-    }
-    public void LightTechnologyBuffOnclick()
-    {
-        print("boop");
-        //call side function
-        //CP-=30
-        TechnologyBuffButton.enabled = true;
-        DarkTechnologyBuffButton.enabled = false;
-        LightTechnologyBuffButton.enabled = false;
-
-    }
-    public void DarkTechnologyDebuffOnclick()
-    {
-        print("boop");
-        //call side function
-        //CP-=30
-        TechnologyDebuffButton.enabled = true;
-        DarkTechnologyDebuffButton.enabled = false;
-        LightTechnologyDebuffButton.enabled = false;
-
-    }
-    public void LightTechnologyDebuffOnclick()
-    {
-        print("boop");
-        //call side function
-        //CP-=30
-        TechnologyDebuffButton.enabled = true;
-        DarkTechnologyDebuffButton.enabled = false;
-        LightTechnologyDebuffButton.enabled = false;
-
-    }
-    void Update()
-    {
-
+        currentChaosPoint += amount;
+        
+        //ChaosPointsCount.text = currentChaosPoint.ToString();
+        ChaosPointsBar.SetValueWithoutNotify(currentChaosPoint);
     }
 }
