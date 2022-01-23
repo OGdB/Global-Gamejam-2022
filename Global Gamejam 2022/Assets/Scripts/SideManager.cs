@@ -7,6 +7,8 @@ public class SideManager : MonoBehaviour
     public StateEnum technologyState = new StateEnum(0);
     public static List<Spawner> lightSideSpawns = new List<Spawner>();
     public static List<Spawner> darkSideSpawns = new List<Spawner>();
+    public int amountOfTowersLeft = 6;
+    
 
     public GameObject[] soldierPrefabs; // Soldier prefabs in the order of worst to best
 
