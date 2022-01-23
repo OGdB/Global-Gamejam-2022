@@ -15,9 +15,11 @@ public class Spawner : MonoBehaviour
     private Transform thisLaneTarget;
 
     private Coroutine spawnCoroutine;
+    private float Timer;
 
     private void Start()
     {
+        Timer = 0;
         if (gameObject.tag == "Light")
         {
             thisSideManager = GameObject.Find("LightManager").GetComponent<SideManager>();
@@ -88,6 +90,7 @@ public class Spawner : MonoBehaviour
         {
             // Light wins
             Blackboard.winner = "Light";
+            Blackboard.TimeLasted = (int)Timer;
             Spawner[] allSpawners = FindObjectsOfType<Spawner>();
             foreach (Spawner spawner in allSpawners)
             {
@@ -99,6 +102,7 @@ public class Spawner : MonoBehaviour
         {
             // Dark wins
             Blackboard.winner = "Dark";
+            Blackboard.TimeLasted = (int)Timer;
             Spawner[] allSpawners = FindObjectsOfType<Spawner>();
             foreach (Spawner spawner in allSpawners)
             {
@@ -106,5 +110,9 @@ public class Spawner : MonoBehaviour
             }
             UnityEngine.SceneManagement.SceneManager.LoadScene("FinalScreen");
         }
+    }
+    private void Update()
+    {
+        Timer += Time.deltaTime;
     }
 }
