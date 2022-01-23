@@ -107,19 +107,18 @@ public class SideManager : MonoBehaviour
             // Find enemy base
             if (thisTag == "Dark")
             {
-                newTroop.GetComponent<AI>().targetBase = transform.TransformPoint(lightBase.position);
+                newTroop.GetComponent<AI>().targetBase = lightBase.position;
             }
             else
             {
-                newTroop.GetComponent<AI>().targetBase = transform.TransformPoint(darkBase.position);
+                newTroop.GetComponent<AI>().targetBase = darkBase.position;
             }
         }
         else
         {
-            if (!spawnPoint.gameObject.activeInHierarchy)
+            if (!spawnPoint.gameObject.activeInHierarchy) // if this spawnpoint was destroyed
             {
                 Blackboard.loser = thisTag;
-                print($"{thisTag}'s spawnpoint destroyed!");
                 if (thisTag == "Light")
                 {
                     Blackboard.winner = "Dark";
