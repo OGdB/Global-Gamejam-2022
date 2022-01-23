@@ -36,7 +36,7 @@ public class SideManager : MonoBehaviour
 
     public bool ChangeDefensesState(int change)
     {
-        if (change <= -1 && defensesState.currentState == StateEnum.CurrentState.level1)
+        if (change <= -1 && defensesState.currentState == StateEnum.CurrentState.level1 || (change >= 1 && defensesState.currentState == StateEnum.CurrentState.level3))
             return false;
 
         defensesState.currentState += change;
@@ -49,7 +49,7 @@ public class SideManager : MonoBehaviour
             {
                 // Completely replace the towers;
 
-                Instantiate(newModel, tower.transform.position, tower.transform.rotation, tower.transform.parent);
+                Instantiate(newModel, tower.transform.position, newModel.transform.rotation, tower.transform.parent);
                 Destroy(tower.gameObject);
                 amountOfTowersLeft++;
             }
@@ -60,7 +60,7 @@ public class SideManager : MonoBehaviour
     }
     public bool ChangeTechnologyState(int change)
     {
-        if ((change <= -1 && technologyState.currentState == StateEnum.CurrentState.level1) || (change >= 1 && technologyState.currentState == StateEnum.CurrentState.level2))
+        if ((change <= -1 && technologyState.currentState == StateEnum.CurrentState.level1) || (change >= 1 && technologyState.currentState == StateEnum.CurrentState.level3))
             return false;
 
         technologyState.currentState += change;

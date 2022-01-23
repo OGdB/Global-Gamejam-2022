@@ -46,7 +46,7 @@ MonoBehaviour:
   lightSideManager: {fileID: 741824686902757865}
   darkSideManager: {fileID: 741824687474311129}
   messageText: {fileID: 8870382647179681221}
-  eventInterval: 6
+  eventInterval: 45
   eventIntervalDecreaseRate: 1
   randomBadMessages:
   - smiths forgot how to make swords!
