@@ -797,6 +797,10 @@ PrefabInstance:
       value: Map
       objectReference: {fileID: 0}
     - target: {fileID: 2537958203864773414, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2537958203864773414, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
       propertyPath: m_TagString
       value: Dark
       objectReference: {fileID: 0}
@@ -807,6 +811,10 @@ PrefabInstance:
     - target: {fileID: 2537958204371522934, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2537958204522163818, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2537958204522163818, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
       propertyPath: m_TagString
@@ -909,6 +917,14 @@ PrefabInstance:
       propertyPath: messageText
       value: 
       objectReference: {fileID: 984110709769778710}
+    - target: {fileID: 3358507230286572310, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
+      propertyPath: eventInterval
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3358507230930162636, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3358507230930162636, guid: 14ce3cf70de8f384191261b88430f5d9, type: 3}
       propertyPath: m_TagString
       value: Dark

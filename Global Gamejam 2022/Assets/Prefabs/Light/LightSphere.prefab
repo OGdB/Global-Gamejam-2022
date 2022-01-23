@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 5884205823529544762}
   - component: {fileID: 920134409463840834}
   - component: {fileID: -6604423747526188650}
-  - component: {fileID: 8783217631661083102}
   m_Layer: 0
   m_Name: LightSphere
   m_TagString: Light
@@ -163,16 +162,3 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!135 &8783217631661083102
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6339415403353677038}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 3
-  m_Center: {x: 0, y: 0, z: 0}
