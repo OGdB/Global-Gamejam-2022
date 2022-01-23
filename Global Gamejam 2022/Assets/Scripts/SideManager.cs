@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class SideManager : MonoBehaviour
@@ -7,6 +8,15 @@ public class SideManager : MonoBehaviour
     [SerializeField]
     private Transform spawnPoint;
     [SerializeField] private GameObject[] soldierPrefabs;
+
+    public Transform lightBase;
+    public Transform darkBase;
+    public int spawnTroopInterval = 10;
+
+    private void Start()
+    {
+        StartCoroutine(SpawnTroopLoop());
+    }
     public void ChangeDefensesState(int change)
     {
         if (change <= -1 && defensesState.currentState == 0)
@@ -63,15 +73,25 @@ public class SideManager : MonoBehaviour
     /// </summary>
     public void SpawnTroop()
     {
-        Instantiate(soldierPrefabs[(int)technologyState.currentState], position: spawnPoint.position, Quaternion.identity);
+        GameObject newTroop = Instantiate(soldierPrefabs[(int)technologyState.currentState], position: spawnPoint.position, Quaternion.identity);
+        // Find enemy base
+        if (gameObject.tag == "Dark")
+        {
+            newTroop.GetComponent<AI>().targetBase = transform.TransformPoint(lightBase.position);
+            newTroop.GetComponent<AI>().enemyTag = "Light";
+        }
+        else
+        {
+            newTroop.GetComponent<AI>().targetBase = transform.TransformPoint(darkBase.position);
+            newTroop.GetComponent<AI>().enemyTag = "Dark";
+        }
     }
 
-    public bool testBool = false;
-    public void Update()
+    private IEnumerator SpawnTroopLoop()
     {
-        if (testBool)
+        while (Application.isPlaying)
         {
-            testBool = false;
+            yield return new WaitForSeconds(spawnTroopInterval);
             SpawnTroop();
         }
     }

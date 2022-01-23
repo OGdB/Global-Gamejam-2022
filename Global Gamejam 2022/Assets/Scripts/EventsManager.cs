@@ -10,6 +10,8 @@ public class EventsManager : MonoBehaviour
     private SideManager lightSideManager;
     [SerializeField] 
     private SideManager darkSideManager;
+    [SerializeField]
+    private TMPro.TextMeshProUGUI messageText;
     [Range(1, 60)]
     public int eventInterval = 45;
 
@@ -42,11 +44,21 @@ public class EventsManager : MonoBehaviour
         void GoodEvent()
         {
             side.ChangeRandomState(1);
+            RandomGoodEventMessage();
         }
 
         void BadEvent()
         {
             side.ChangeRandomState(-1);
+            RandomBadEventMessage();
         }
+    }
+    private void RandomBadEventMessage()
+    {
+        messageText.SetText("Good event!");
+    }
+    private void RandomGoodEventMessage()
+    {
+        messageText.SetText("Bad event!");
     }
 }
