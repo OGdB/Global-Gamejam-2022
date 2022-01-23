@@ -1,33 +1,59 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class SideManager : MonoBehaviour
 {
-    public string thisTag;
-    public StateEnum defensesState = new StateEnum();
+    public StateEnum defensesState = new StateEnum(0);
     public StateEnum technologyState = new StateEnum(0);
-    [SerializeField]
-    private Transform spawnPoint;
-    [SerializeField]
-    private Transform enemySpawnPoint;
-    [SerializeField] private GameObject[] soldierPrefabs; // Soldier prefabs in the order of worst to best
-    private Coroutine spawnCoroutine;
+    public static List<Spawner> lightSideSpawns = new List<Spawner>();
+    public static List<Spawner> darkSideSpawns = new List<Spawner>();
+    public int amountOfTowersLeft = 6;
+    
 
-    public Transform lightBase;
-    public Transform darkBase;
-    public int spawnTroopInterval = 10;
+    public GameObject[] soldierPrefabs; // Soldier prefabs in the order of worst to best
+    public GameObject[] towerPrefabs; // Soldier prefabs in the order of worst to best
 
-    private void Start()
+    public void Awake()
     {
-        spawnCoroutine = StartCoroutine(SpawnTroopLoop());
+        Spawner[] _spawns = FindObjectsOfType<Spawner>();
+
+        for (int i = 0; i < _spawns.Length; i++)
+        {
+            Spawner spawn = _spawns[i];
+            if (spawn.tag == "Light" && gameObject.tag == "Light")
+            {
+                lightSideSpawns.Add(spawn);
+            }
+            else if (spawn.tag == "Dark" && gameObject.tag == "Dark")
+            {
+                darkSideSpawns.Add(spawn);
+            }
+        }
+
+        UpdateStates();
     }
+
+
     public bool ChangeDefensesState(int change)
     {
         if (change <= -1 && defensesState.currentState == StateEnum.CurrentState.level1)
             return false;
 
         defensesState.currentState += change;
+        // Update all towers to the correct models
+        TowerAI[] towers = FindObjectsOfType<TowerAI>();
+        GameObject newModel = GetCurrentTower();
+        foreach (TowerAI tower in towers)
+        {
+            if (tower.tag == gameObject.tag)
+            {
+                // Completely replace the towers;
+
+                Instantiate(newModel, tower.transform.position, tower.transform.rotation, tower.transform.parent);
+                Destroy(tower.gameObject);
+                amountOfTowersLeft++;
+            }
+        }
 
         UpdateStates();
         return true;
@@ -42,6 +68,16 @@ public class SideManager : MonoBehaviour
         UpdateStates();
         return true;
     }
+
+    public GameObject GetCurrentTroop()
+    {
+        return soldierPrefabs[(int)technologyState.currentState];
+    }
+    public GameObject GetCurrentTower()
+    {
+        return towerPrefabs[(int)defensesState.currentState];
+    }
+
     public bool ChangeRandomState(int change)
     {
         float random = Random.Range(-1f, 1f);
@@ -66,19 +102,12 @@ public class SideManager : MonoBehaviour
     [SerializeField] private Sprite stoneAgeImg;
     [SerializeField] private Sprite BronzeAgeImg;
     [SerializeField] private Sprite IronAgeImg;
-    [SerializeField] private GameObject loseScreen;
     [SerializeField] private Image BalancedefenseImage;
     [SerializeField] private Image BalancetechImage;
     [SerializeField] private Sprite Level1Img;
     [SerializeField] private Sprite Level2Img;
     [SerializeField] private Sprite Level3Img;
     
-
-    public void Awake()
-    {
-        UpdateStates();
-    }
-
     /// <summary>
     /// Updates the states visually
     /// </summary>
@@ -88,17 +117,17 @@ public class SideManager : MonoBehaviour
         techText.SetText(technologyState.GetTechnologyString());
         switch (defensesState.GetStateString())
         {
-            case "level1":
+            case "Level 1":
                 defenseImage.sprite = Level1Img;
                 BalancedefenseImage.sprite = Level1Img;
                 break;
-            case "level2":
+            case "Level 2":
                 defenseImage.sprite = Level2Img;
-                BalancedefenseImage.sprite = Level1Img;
+                BalancedefenseImage.sprite = Level2Img;
                 break;
-            case "level3":
+            case "Level 3":
                 defenseImage.sprite = Level3Img;
-                BalancedefenseImage.sprite = Level1Img;
+                BalancedefenseImage.sprite = Level3Img;
                 break;
             default:
                 break;
@@ -111,65 +140,16 @@ public class SideManager : MonoBehaviour
                 break;
             case "Bronze Age":
                 techImage.sprite = BronzeAgeImg;
-                BalancetechImage.sprite = stoneAgeImg;
+                BalancetechImage.sprite = BronzeAgeImg;
                 break;
             case "Iron Age":
                 techImage.sprite = IronAgeImg;
-                BalancetechImage.sprite = stoneAgeImg;
+                BalancetechImage.sprite = IronAgeImg;
                 break;
             default:
                 break;
         }
        
 
-    }
-
-
-
-    public void SpawnTroop()
-    {
-        if (spawnPoint.gameObject.activeInHierarchy && enemySpawnPoint.gameObject.activeInHierarchy)
-        {
-            GameObject newTroop = Instantiate(soldierPrefabs[(int)technologyState.currentState], position: spawnPoint.position, Quaternion.identity);
-            // Find enemy base
-            if (thisTag == "Dark")
-            {
-                newTroop.GetComponent<AI>().targetBase = lightBase.position;
-            }
-            else
-            {
-                newTroop.GetComponent<AI>().targetBase = darkBase.position;
-            }
-        }
-        else
-        {
-            if (!spawnPoint.gameObject.activeInHierarchy) // if this spawnpoint was destroyed
-            {
-                Blackboard.loser = thisTag;
-                if (thisTag == "Light")
-                {
-                    Blackboard.winner = "Dark";
-                }
-                else if (thisTag == "Dark")
-                {
-                    Blackboard.winner = "Light";
-                }
-            }
-
-            StopCoroutine(spawnCoroutine);
-
-            // GAME OVER SCREEN
-            loseScreen.SetActive(true);
-
-        }
-    }
-
-    private IEnumerator SpawnTroopLoop()
-    {
-        while (Application.isPlaying)
-        {
-            yield return new WaitForSeconds(spawnTroopInterval);
-            SpawnTroop();
-        }
     }
 }

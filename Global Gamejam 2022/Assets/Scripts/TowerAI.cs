@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TowerAI : MonoBehaviour
 {
+    private SideManager thisSide;
     private Transform target;
 
     [Header("Attributes")]
@@ -16,12 +17,12 @@ public class TowerAI : MonoBehaviour
 
     public string enemyTag = "Enemy";
 
-    public Transform partToRotate;
+    //public Transform partToRotate;
     public float turnSpeed = 10f;
 
     public GameObject bulletPrefab;
     public Transform firePoint;
-    
+
 
     void Start()
     {
@@ -29,10 +30,12 @@ public class TowerAI : MonoBehaviour
         if (gameObject.tag == "Dark")
         {
             enemyTag = "Light";
+            thisSide = GameObject.Find("DarkManager").GetComponent<SideManager>();
         }
         else
         {
             enemyTag = "Dark";
+            thisSide = GameObject.Find("LightManager").GetComponent<SideManager>();
         }
     }
 
@@ -60,7 +63,6 @@ public class TowerAI : MonoBehaviour
 
             if (closestEnemy != null)
             {
-                // ADD currentEnemy is either AI or TowerAI
                 target = closestEnemy.transform;
             }
         }
@@ -68,12 +70,14 @@ public class TowerAI : MonoBehaviour
 
     void Update()
     {
+        UpdateTarget();
+
         if (target == null)
             return;
-        Vector3 dir = target.position - transform.position;
+/*        Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-        partToRotate.rotation =  Quaternion.Euler(0f,rotation.y,0f);
+        partToRotate.rotation =  Quaternion.Euler(0f,rotation.y,0f);*/
 
         if(fireCountdown <= 0f)
         {
@@ -97,5 +101,10 @@ public class TowerAI : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
+    }
+
+    private void OnDisable()
+    {
+        thisSide.amountOfTowersLeft--;
     }
 }
