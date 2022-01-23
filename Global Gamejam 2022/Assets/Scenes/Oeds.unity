@@ -2664,6 +2664,13 @@ MonoBehaviour:
   darkSideManager: {fileID: 533738659}
   messageText: {fileID: 29178038}
   eventInterval: 6
+  randomBadMessages:
+  - smiths forgot how to make swords!
+  - scientists forgot their books!
+  - soldiers don't remember how to use their weapons!
+  randomGoodMessages:
+  - scientists invented a new metal!
+  - smiths remembered an old recipe for swords!
 --- !u!4 &548238410
 Transform:
   m_ObjectHideFlags: 0

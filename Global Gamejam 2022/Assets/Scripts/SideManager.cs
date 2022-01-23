@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class SideManager : MonoBehaviour
@@ -20,6 +21,15 @@ public class SideManager : MonoBehaviour
     private void Start()
     {
         spawnCoroutine = StartCoroutine(SpawnTroopLoop());
+
+        for (int i = 0; i < 9; i++)
+        {
+
+        }
+        for (int i = 0; i < 9; i++)
+        {
+
+        }
     }
     public void ChangeDefensesState(int change)
     {
@@ -95,7 +105,7 @@ public class SideManager : MonoBehaviour
 
     public void SpawnTroop()
     {
-        if (spawnPoint != null && enemySpawnPoint != null)
+        if (spawnPoint.gameObject.activeInHierarchy && enemySpawnPoint.gameObject.activeInHierarchy)
         {
             GameObject newTroop = Instantiate(soldierPrefabs[(int)technologyState.currentState], position: spawnPoint.position, Quaternion.identity);
             // Find enemy base
@@ -110,10 +120,16 @@ public class SideManager : MonoBehaviour
         }
         else
         {
-            if (spawnPoint == null)
+            if (!spawnPoint.gameObject.activeInHierarchy)
+            {
+                Blackboard.loser = thisTag;
                 print($"{thisTag}'s spawnpoint destroyed!");
+            }
             else
-                print("Enemy spawnpoint destroyed!");
+            {
+                Blackboard.winner = thisTag;
+                print($"{thisTag}'s Enemy spawnpoint destroyed!");
+            }
 
             StopCoroutine(spawnCoroutine);
 

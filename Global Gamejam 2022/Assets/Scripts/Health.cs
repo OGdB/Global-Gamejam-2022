@@ -25,7 +25,6 @@ public class Health : MonoBehaviour
     public void Kill()
     {
         gameObject.SetActive(false);
-        Destroy(gameObject, 0.5f);
     }
 
     public void ChangeMaxHealth(int changeAmount)
