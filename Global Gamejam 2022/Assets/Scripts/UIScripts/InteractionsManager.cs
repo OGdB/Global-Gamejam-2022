@@ -28,6 +28,7 @@ public class InteractionsManager : MonoBehaviour
     public Slider ChaosPointsBar;
     private int maxChaosPoints = 100;
     private int currentChaosPoint = 0;
+    [Range(0.1f, 25f)]
     public float ChargeRate = 0.5f;
     [SerializeField] private TMPro.TextMeshProUGUI ChaosPointsCount;
    
