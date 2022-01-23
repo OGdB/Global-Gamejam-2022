@@ -33,7 +33,7 @@ public class AI : MonoBehaviour
     }
     private void Update()
     {
-        if (!currentEnemy)
+        if (!currentEnemy) // Look for enemy if not fighting one
         {
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, 4f);
             Collider closestEnemy = null;
@@ -72,14 +72,15 @@ public class AI : MonoBehaviour
             if (Vector3.Distance(transform.position, currentEnemy.transform.position) < 1.5f && !attackCooldown)
             {
                 StartCoroutine(AttackCooldown());
-                bool killed = currentEnemy.GetComponent<Health>().Damage((int)(10 * strength.Power));
+                // Damage returns whether the enemy was killed or not
+                bool killed = currentEnemy.Damage((int)(10 * strength.Power));
 
                 if (killed)
                 {
                     currentEnemy = null;
+                    MoveToDestination(targetBase); // Continue moving towards enemy base
                 }
             }
-
         }
     }
     private IEnumerator AttackCooldown()
