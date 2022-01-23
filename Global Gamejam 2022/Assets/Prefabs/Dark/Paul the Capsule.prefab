@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6096573837817749365}
   - component: {fileID: -8397782274584351774}
   m_Layer: 0
-  m_Name: DarkCapsule
+  m_Name: Paul the Capsule
   m_TagString: Dark
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,8 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetBase: {x: 0, y: 0, z: 0}
-  enemyTag: 
-  isFighting: 0
+  enemyTag: Light
 --- !u!114 &8750593079252943301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7aeb558be5300644b2c194beca4a245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 40
 --- !u!114 &6096573837817749365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573a78df75b9d574f8f4b350cc49b742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Power: 1
+  Power: 1.75
 --- !u!195 &-8397782274584351774
 NavMeshAgent:
   m_ObjectHideFlags: 0

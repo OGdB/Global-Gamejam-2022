@@ -72,7 +72,7 @@ public class AI : MonoBehaviour
             if (Vector3.Distance(transform.position, currentEnemy.transform.position) < 1.5f && !attackCooldown)
             {
                 StartCoroutine(AttackCooldown());
-                bool killed = currentEnemy.GetComponent<Health>().Damage(10);
+                bool killed = currentEnemy.GetComponent<Health>().Damage((int)(10 * strength.Power));
 
                 if (killed)
                 {
