@@ -35,7 +35,7 @@ public class AI : MonoBehaviour
     {
         if (!currentEnemy)
         {
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, 20f);
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, 4f);
             Collider closestEnemy = null;
             float closestDistance = Mathf.Infinity;
 
