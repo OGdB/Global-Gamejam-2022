@@ -71,6 +71,7 @@ public class SideManager : MonoBehaviour
     [SerializeField] private Sprite stoneAgeImg;
     [SerializeField] private Sprite BronzeAgeImg;
     [SerializeField] private Sprite IronAgeImg;
+    [SerializeField] private GameObject loseScreen;
 
     public void Awake()
     {
@@ -134,6 +135,8 @@ public class SideManager : MonoBehaviour
             StopCoroutine(spawnCoroutine);
 
             // GAME OVER SCREEN
+            loseScreen.SetActive(true);
+
         }
     }
 
