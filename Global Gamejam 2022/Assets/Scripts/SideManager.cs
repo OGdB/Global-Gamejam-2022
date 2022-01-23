@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class SideManager : MonoBehaviour
@@ -21,34 +22,38 @@ public class SideManager : MonoBehaviour
     {
         spawnCoroutine = StartCoroutine(SpawnTroopLoop());
     }
-    public void ChangeDefensesState(int change)
+    public bool ChangeDefensesState(int change)
     {
-        if (change <= -1 && defensesState.currentState == 0)
-            return;
+        if (change <= -1 && defensesState.currentState == StateEnum.CurrentState.horrible)
+            return false;
 
         defensesState.currentState += change;
 
         UpdateStates();
+        return true;
     }
-    public void ChangeTechnologyState(int change)
+    public bool ChangeTechnologyState(int change)
     {
-        if ((change <= -1 && technologyState.currentState == 0) || (change >= 1 && technologyState.currentState == StateEnum.CurrentState.bad))
-            return;
+        if ((change <= -1 && technologyState.currentState == StateEnum.CurrentState.horrible) || (change >= 1 && technologyState.currentState == StateEnum.CurrentState.bad))
+            return false;
 
         technologyState.currentState += change;
 
         UpdateStates();
+        return true;
     }
-    public void ChangeRandomState(int change)
+    public bool ChangeRandomState(int change)
     {
         float random = Random.Range(-1f, 1f);
         if (random < 0)
         {
-            ChangeDefensesState(change);
+            bool success = ChangeDefensesState(change);
+            return success;
         }
         else
         {
-            ChangeTechnologyState(change);
+            bool success = ChangeTechnologyState(change);
+            return success;
         }
     }
 
@@ -61,6 +66,7 @@ public class SideManager : MonoBehaviour
     [SerializeField] private Sprite stoneAgeImg;
     [SerializeField] private Sprite BronzeAgeImg;
     [SerializeField] private Sprite IronAgeImg;
+    [SerializeField] private GameObject loseScreen;
 
     public void Awake()
     {
@@ -95,29 +101,39 @@ public class SideManager : MonoBehaviour
 
     public void SpawnTroop()
     {
-        if (spawnPoint != null && enemySpawnPoint != null)
+        if (spawnPoint.gameObject.activeInHierarchy && enemySpawnPoint.gameObject.activeInHierarchy)
         {
             GameObject newTroop = Instantiate(soldierPrefabs[(int)technologyState.currentState], position: spawnPoint.position, Quaternion.identity);
             // Find enemy base
             if (thisTag == "Dark")
             {
-                newTroop.GetComponent<AI>().targetBase = transform.TransformPoint(lightBase.position);
+                newTroop.GetComponent<AI>().targetBase = lightBase.position;
             }
             else
             {
-                newTroop.GetComponent<AI>().targetBase = transform.TransformPoint(darkBase.position);
+                newTroop.GetComponent<AI>().targetBase = darkBase.position;
             }
         }
         else
         {
-            if (spawnPoint == null)
-                print($"{thisTag}'s spawnpoint destroyed!");
-            else
-                print("Enemy spawnpoint destroyed!");
+            if (!spawnPoint.gameObject.activeInHierarchy) // if this spawnpoint was destroyed
+            {
+                Blackboard.loser = thisTag;
+                if (thisTag == "Light")
+                {
+                    Blackboard.winner = "Dark";
+                }
+                else if (thisTag == "Dark")
+                {
+                    Blackboard.winner = "Light";
+                }
+            }
 
             StopCoroutine(spawnCoroutine);
 
             // GAME OVER SCREEN
+            loseScreen.SetActive(true);
+
         }
     }
 
