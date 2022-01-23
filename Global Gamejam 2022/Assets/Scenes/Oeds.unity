@@ -130,6 +130,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 274669184, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274069108, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2294863240223167736, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
       propertyPath: m_Name
       value: Map
