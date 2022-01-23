@@ -8,7 +8,7 @@ public class TowerAI : MonoBehaviour
 
     [Header("Attributes")]
 
-    public float range = 15f;
+    public float range = 5f;
     public float firerate = 1f;
     private float fireCountdown = 0f;
 
@@ -64,7 +64,6 @@ public class TowerAI : MonoBehaviour
     {
         if (target == null)
             return;
-
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
