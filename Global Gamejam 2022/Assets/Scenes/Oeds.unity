@@ -447,6 +447,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2537958205207893005, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
   m_PrefabInstance: {fileID: 2537958203865119120}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1371528293 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2537958205207893004, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
+  m_PrefabInstance: {fileID: 2537958203865119120}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1371528294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371528293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7aeb558be5300644b2c194beca4a245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 200
 --- !u!114 &1373244561 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5124968517903852129, guid: 924689dd8037bdd47b501176f5fff786, type: 3}
@@ -585,6 +603,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816244227}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1967598615 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2537958203884802622, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
+  m_PrefabInstance: {fileID: 2537958203865119120}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1967598616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967598615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7aeb558be5300644b2c194beca4a245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 200
 --- !u!1 &1990064618
 GameObject:
   m_ObjectHideFlags: 0
@@ -994,6 +1030,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Dark
       objectReference: {fileID: 0}
+    - target: {fileID: 2537958203884802622, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
+      propertyPath: m_TagString
+      value: Light
+      objectReference: {fileID: 0}
     - target: {fileID: 2537958204034107737, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
@@ -1009,6 +1049,10 @@ PrefabInstance:
     - target: {fileID: 2537958204522163818, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
       propertyPath: m_TagString
       value: Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 2537958205207893004, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
+      propertyPath: m_TagString
+      value: Dark
       objectReference: {fileID: 0}
     - target: {fileID: 6295851736798281598, guid: 9cd0aca26c5c248489bacc972ec57d11, type: 3}
       propertyPath: m_RootOrder
