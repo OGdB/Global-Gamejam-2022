@@ -48,7 +48,6 @@ public class SideManager : MonoBehaviour
             if (tower.tag == gameObject.tag)
             {
                 // Completely replace the towers;
-
                 Instantiate(newModel, tower.transform.position, newModel.transform.rotation, tower.transform.parent);
                 Destroy(tower.gameObject);
                 amountOfTowersLeft++;
