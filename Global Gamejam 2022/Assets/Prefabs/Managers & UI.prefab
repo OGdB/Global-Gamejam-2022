@@ -52,9 +52,16 @@ MonoBehaviour:
   - smiths forgot how to make swords!
   - scientists forgot their books!
   - soldiers don't remember how to use their weapons!
+  - Earthquake hits the battlefield
+  - Blizzard freezes some of the nearby soldiers
+  - Someone lost the money of the army at a poker game
   randomGoodMessages:
   - scientists invented a new metal!
   - smiths remembered an old recipe for swords!
+  - Jim found a gold mine next to his house
+  - Reinforcements have come from the west
+  - The general found that 100 kegs of gunpowder were in his basement
+  - Reinforcements have come from the East
 --- !u!1 &1619630839
 GameObject:
   m_ObjectHideFlags: 0
