@@ -28,6 +28,7 @@ public class InteractionsManager : MonoBehaviour
     public Slider ChaosPointsBar;
     private int maxChaosPoints = 100;
     private int currentChaosPoint = 0;
+    [Range(0.1f, 25f)]
     public float ChargeRate = 0.5f;
     [SerializeField] private TMPro.TextMeshProUGUI ChaosPointsCount;
    
@@ -56,7 +57,8 @@ public class InteractionsManager : MonoBehaviour
     // Update is called once per frame
     public void PurchaseDefenseBuff(SideManager side)
     {
-        if (currentChaosPoint >= 25 && side.defensesState.currentState != StateEnum.CurrentState.level2)
+        
+        if (currentChaosPoint >= 25 && side.defensesState.currentState != StateEnum.CurrentState.level3)
         {
             changeChaosPoints(-25);
             side.ChangeDefensesState(1);
@@ -64,6 +66,7 @@ public class InteractionsManager : MonoBehaviour
     }
     public void PurchaseDefenseDebuff(SideManager side)
     {
+        
         if (currentChaosPoint >= 25&& side.defensesState.currentState!= 0)
         {
             changeChaosPoints(-25);
@@ -72,7 +75,8 @@ public class InteractionsManager : MonoBehaviour
     }
     public void PurchaseTechnologyBuff(SideManager side)
     {
-        if (currentChaosPoint >= 25 && side.technologyState.currentState != StateEnum.CurrentState.level2)
+       
+        if (currentChaosPoint >= 25 && side.technologyState.currentState != StateEnum.CurrentState.level3)
         {
             changeChaosPoints(-25);
             side.ChangeTechnologyState(1);
@@ -80,6 +84,7 @@ public class InteractionsManager : MonoBehaviour
     }
     public void PurchaseTechnologyDebuff(SideManager side)
     {
+        
         if (currentChaosPoint >= 25 && side.technologyState.currentState != 0)
         {
             changeChaosPoints(-25);

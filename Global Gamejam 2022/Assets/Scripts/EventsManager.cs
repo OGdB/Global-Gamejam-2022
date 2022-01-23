@@ -14,6 +14,8 @@ public class EventsManager : MonoBehaviour
     private TMPro.TextMeshProUGUI messageText;
     [Range(1, 60)]
     public int eventInterval = 45;
+    [Range(1, 15)]
+    public int eventIntervalDecreaseRate = 1;
     public string[] randomBadMessages;
     public string[] randomGoodMessages;
 
@@ -33,6 +35,11 @@ public class EventsManager : MonoBehaviour
                 RandomEvent(lightSideManager);
             else
                 RandomEvent(darkSideManager);
+
+            if (eventInterval > 1)
+            {
+                eventInterval -= eventIntervalDecreaseRate;
+            }
         }
     }
 
