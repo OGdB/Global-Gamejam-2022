@@ -37,14 +37,14 @@ public class InteractionsManager : MonoBehaviour
     void Start()
     {
         //setup Buttons
-        DarkDefenseBuffLabel.SetText("DarkD__++:\n25CP");
-        LightDefenseBuffLabel.SetText("LightD__++:\n25CP");
-        DarkDefenseDebuffLabel.SetText("DarkD__--:\n25CP");
-        LightDefenseDebuffLabel.SetText("LightD__--:\n25CP");
-        DarkTechnologyBuffLabel.SetText("DarkT__++:\n25CP");
-        LightTechnologyBuffLabel.SetText("LightT__++:\n25CP");
-        DarkTechnologyDebuffLabel.SetText("DarkT__--:\n25CP");
-        LightTechnologyDebuffLabel.SetText( "LightT__--:\n25CP");
+        DarkDefenseBuffLabel.SetText("Upgrade Dark Defense:\n25CP");
+        LightDefenseBuffLabel.SetText("Upgrade Light Defense:\n25CP");
+        DarkDefenseDebuffLabel.SetText("Downgrade Dark Defense:\n25CP");
+        LightDefenseDebuffLabel.SetText("Downgrade Light Defense:\n25CP");
+        DarkTechnologyBuffLabel.SetText("Upgrade Dark Technology:\n25CP");
+        LightTechnologyBuffLabel.SetText("Upgrade Light Technology:\n25CP");
+        DarkTechnologyDebuffLabel.SetText("Downgrade Dark Technology:\n25CP");
+        LightTechnologyDebuffLabel.SetText("Downgrade Light Technology:\n25CP");
 
         //setup chaos points bar
         ChaosPointsBar.SetValueWithoutNotify(currentChaosPoint);
