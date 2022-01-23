@@ -67,6 +67,12 @@ public class SideManager : MonoBehaviour
     [SerializeField] private Sprite BronzeAgeImg;
     [SerializeField] private Sprite IronAgeImg;
     [SerializeField] private GameObject loseScreen;
+    [SerializeField] private Image BalancedefenseImage;
+    [SerializeField] private Image BalancetechImage;
+    [SerializeField] private Sprite Level1Img;
+    [SerializeField] private Sprite Level2Img;
+    [SerializeField] private Sprite Level3Img;
+    
 
     public void Awake()
     {
@@ -80,20 +86,41 @@ public class SideManager : MonoBehaviour
     {
         defenseText.SetText(defensesState.GetStateString());
         techText.SetText(technologyState.GetTechnologyString());
-        switch (technologyState.GetTechnologyString())
+        switch (defensesState.GetStateString())
         {
-            case "Stone Age":
-                techImage.sprite = stoneAgeImg;
+            case "level1":
+                defenseImage.sprite = Level1Img;
+                BalancedefenseImage.sprite = Level1Img;
                 break;
-            case "Bronze Age":
-                techImage.sprite = BronzeAgeImg;
+            case "level2":
+                defenseImage.sprite = Level2Img;
+                BalancedefenseImage.sprite = Level1Img;
                 break;
-            case "Iron Age":
-                techImage.sprite = IronAgeImg;
+            case "level3":
+                defenseImage.sprite = Level3Img;
+                BalancedefenseImage.sprite = Level1Img;
                 break;
             default:
                 break;
         }
+        switch (technologyState.GetTechnologyString())
+        {
+            case "Stone Age":
+                techImage.sprite = stoneAgeImg;
+                BalancetechImage.sprite = stoneAgeImg;
+                break;
+            case "Bronze Age":
+                techImage.sprite = BronzeAgeImg;
+                BalancetechImage.sprite = stoneAgeImg;
+                break;
+            case "Iron Age":
+                techImage.sprite = IronAgeImg;
+                BalancetechImage.sprite = stoneAgeImg;
+                break;
+            default:
+                break;
+        }
+       
 
     }
 
