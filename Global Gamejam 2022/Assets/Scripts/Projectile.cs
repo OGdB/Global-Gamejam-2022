@@ -35,9 +35,25 @@ public class Projectile : MonoBehaviour
         }
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
     }
+
     //What happens when you hit a target
+    [System.Obsolete]
     void HitTarget()
     {
+        //Do damage to enemy
+        float randomInt = Random.RandomRange(0, 100);
+        if(randomInt <= 20f)
+        {
+            //damage(0);
+        }
+        else if(20f < randomInt && randomInt <= 95f)
+        {
+            //damage(10);
+        }
+        else
+        {
+            //damage(20);
+        }
         Destroy(gameObject);
 
     }
