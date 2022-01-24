@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 7840566627316931453}
   - component: {fileID: -1933012655001600943}
   - component: {fileID: -6690542276252480071}
+  - component: {fileID: -2581216208235226810}
   m_Layer: 0
   m_Name: Tower3White
   m_TagString: Light
@@ -178,3 +179,16 @@ MonoBehaviour:
   turnSpeed: 10
   bulletPrefab: {fileID: 3779343048272056846, guid: 18a69c38e14aab240afe96db077715d5, type: 3}
   firePoint: {fileID: 493288378674150594}
+--- !u!65 &-2581216208235226810
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7459255532939002311}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.44655773, y: 1, z: 0.5851138}
+  m_Center: {x: 0, y: -1.5505688e-15, z: 0.29896224}

@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 6662499769443698006}
   - component: {fileID: -4906110938462730160}
   - component: {fileID: -2693511511663732755}
+  - component: {fileID: 1032110324554855536}
   m_Layer: 0
   m_Name: Tower2White
   m_TagString: Light
@@ -259,10 +260,22 @@ MonoBehaviour:
   range: 6
   firerate: 2
   enemyTag: Black
-  partToRotate: {fileID: 6662499769443698006}
   turnSpeed: 10
   bulletPrefab: {fileID: 3779343048272056846, guid: 18a69c38e14aab240afe96db077715d5, type: 3}
   firePoint: {fileID: 8187172465500709935}
+--- !u!65 &1032110324554855536
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6286502335906586604}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 23, y: 25, z: 23}
+  m_Center: {x: 0, y: 13, z: 0}
 --- !u!1 &7585863707321052349
 GameObject:
   m_ObjectHideFlags: 0
